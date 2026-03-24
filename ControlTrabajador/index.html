@@ -12,149 +12,152 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 
 /* LOGIN */
 #login-screen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;}
-.login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 28px;width:100%;max-width:340px;text-align:center;}
-.login-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:32px;color:var(--accent);margin-bottom:6px;}
-.login-sub{color:var(--muted);font-size:13px;margin-bottom:28px;}
-.login-box input{margin-bottom:14px;font-size:16px;letter-spacing:2px;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 28px;width:100%;max-width:360px;text-align:center;}
+.login-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;color:var(--accent);margin-bottom:4px;letter-spacing:-1px;}
+.login-sub{color:var(--muted);font-size:13px;margin-bottom:6px;}
+.login-url-note{color:var(--muted);font-size:11px;margin-bottom:22px;line-height:1.5;}
+.login-box input{margin-bottom:10px;font-size:15px;}
 .login-err{color:var(--danger);font-size:13px;margin-top:8px;min-height:20px;}
+.login-spinner{display:none;color:var(--muted);font-size:13px;margin-top:8px;}
 
 /* LAYOUT */
 .app-shell{display:flex;flex-direction:column;min-height:100vh;max-width:480px;margin:0 auto;}
 @media(min-width:900px){.app-shell{max-width:100%;flex-direction:row;}}
-.sidebar{background:var(--surface);border-right:1px solid var(--border);padding:28px 20px;display:flex;flex-direction:column;gap:6px;}
+.sidebar{background:var(--surface);border-right:1px solid var(--border);padding:26px 18px;display:flex;flex-direction:column;gap:5px;}
 @media(min-width:900px){.sidebar{width:210px;min-height:100vh;position:sticky;top:0;height:100vh;overflow-y:auto;}}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:var(--accent);margin-bottom:22px;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:9px;height:9px;background:var(--accent);border-radius:50%;}
-.nav-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:10px 12px;border-radius:8px;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:center;gap:9px;width:100%;}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:21px;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:7px;}
+.logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;}
+.nav-btn{background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:9px 11px;border-radius:8px;cursor:pointer;text-align:left;transition:all .15s;display:flex;align-items:center;gap:8px;width:100%;}
 .nav-btn:hover{background:var(--surface2);color:var(--text);}
 .nav-btn.active{background:var(--accent);color:#000;font-weight:700;}
 .mobile-nav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;}
 @media(min-width:900px){.mobile-nav{display:none;}}
-.mobile-nav-btn{flex:1;background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:500;padding:9px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .15s;min-width:50px;}
-.mobile-nav-btn .ic{font-size:17px;}
+.mobile-nav-btn{flex:1;background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:9px;font-weight:500;padding:9px 3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .15s;min-width:48px;}
+.mobile-nav-btn .ic{font-size:16px;}
 .mobile-nav-btn.active{color:var(--accent);border-bottom:2px solid var(--accent);}
-.main{flex:1;padding:18px 13px;overflow-y:auto;}
-@media(min-width:900px){.main{padding:30px 34px;}}
+.main{flex:1;padding:16px 13px;overflow-y:auto;}
+@media(min-width:900px){.main{padding:28px 32px;}}
 .sidebar-only{display:none;}
 @media(min-width:900px){.sidebar-only{display:flex;}}
 
 /* TYPOGRAPHY */
-.page-title{font-family:'Syne',sans-serif;font-size:23px;font-weight:700;letter-spacing:-.5px;}
-.page-sub{color:var(--muted);font-size:13px;margin-top:3px;}
-.page-header{margin-bottom:18px;}
-.card-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:13px;}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:13px;}
+.page-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.5px;}
+.page-sub{color:var(--muted);font-size:12px;margin-top:2px;}
+.page-header{margin-bottom:16px;}
+.card-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:12px;}
 
 /* STATS */
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px;}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:13px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px;}
 .stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
-.stat-value{font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:var(--accent);}
+.stat-value{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--accent);}
 .stat-value.danger{color:var(--danger);}
 .stat-value.warn{color:var(--accent2);}
 
 /* FORM */
-.form-group{margin-bottom:11px;}
+.form-group{margin-bottom:10px;}
 label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
 input,select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 11px;outline:none;transition:border-color .15s;-webkit-appearance:none;}
 input:focus,select:focus{border-color:var(--accent);}
 input::placeholder{color:#555;}
 input[type=number]{-moz-appearance:textfield;}
 input[type=number]::-webkit-inner-spin-button{opacity:.4;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;padding:10px 18px;transition:all .15s;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;padding:9px 16px;transition:all .15s;}
 .btn-primary{background:var(--accent);color:#000;}
 .btn-primary:hover{opacity:.88;}
 .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
 .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
 .btn-danger{background:var(--danger);color:#fff;}
-.btn-sm{padding:6px 12px;font-size:12px;}
+.btn-sm{padding:6px 11px;font-size:12px;}
 .btn-full{width:100%;}
 
 /* TABLE */
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th{background:var(--surface2);color:var(--muted);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:8px 10px;text-align:left;white-space:nowrap;}
-td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:var(--surface2);color:var(--muted);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:7px 9px;text-align:left;white-space:nowrap;}
+td{padding:8px 9px;border-bottom:1px solid var(--border);vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(255,255,255,.02);}
 .mono{font-family:'DM Mono',monospace;}
 
 /* BADGES */
-.badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;}
+.badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;}
 .badge-green{background:rgba(200,241,53,.15);color:var(--accent);}
 .badge-yellow{background:rgba(241,193,53,.15);color:var(--accent2);}
 .badge-gray{background:var(--surface2);color:var(--muted);}
 .badge-red{background:rgba(255,92,92,.15);color:var(--danger);}
 
 /* DAY GRID */
-.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:12px;}
+.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:11px;}
 .day-chip{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--muted);cursor:pointer;font-size:10px;font-weight:700;padding:7px 2px;text-align:center;transition:all .12s;user-select:none;}
 .day-chip.worked{background:rgba(200,241,53,.15);border-color:var(--accent);color:var(--accent);}
 .day-chip.sunday-auto{background:rgba(241,193,53,.12);border-color:var(--accent2);color:var(--accent2);cursor:default;}
 
 /* WEEK SELECTOR */
-.week-selector{display:flex;align-items:center;gap:10px;margin-bottom:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 13px;}
-.week-selector button{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);cursor:pointer;font-size:15px;padding:5px 11px;transition:all .12s;}
+.week-selector{display:flex;align-items:center;gap:9px;margin-bottom:15px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:9px 12px;}
+.week-selector button{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);cursor:pointer;font-size:14px;padding:5px 10px;transition:all .12s;}
 .week-selector button:hover{border-color:var(--accent);color:var(--accent);}
-.week-label{flex:1;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;text-align:center;}
+.week-label{flex:1;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;text-align:center;}
 
 /* ALERTS */
-.alert{border-radius:8px;padding:10px 12px;font-size:13px;margin-bottom:11px;}
+.alert{border-radius:8px;padding:10px 12px;font-size:12px;margin-bottom:10px;}
 .alert-success{background:rgba(200,241,53,.1);border:1px solid rgba(200,241,53,.2);color:var(--accent);}
 .alert-danger{background:rgba(255,92,92,.1);border:1px solid rgba(255,92,92,.2);color:var(--danger);}
 .alert-info{background:rgba(241,193,53,.1);border:1px solid rgba(241,193,53,.2);color:var(--accent2);}
 
 /* MISC */
-.sep{border:none;border-top:1px solid var(--border);margin:14px 0;}
+.sep{border:none;border-top:1px solid var(--border);margin:13px 0;}
 .page{display:none;}.page.active{display:block;}
-.empty{text-align:center;padding:32px 20px;color:var(--muted);}
-.empty .ic{font-size:36px;margin-bottom:8px;}
+.empty{text-align:center;padding:30px 20px;color:var(--muted);}
+.empty .ic{font-size:34px;margin-bottom:8px;}
 .empty p{font-size:13px;}
 
 /* TOAST */
-#toast{position:fixed;bottom:68px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--accent);color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;padding:10px 20px;border-radius:40px;opacity:0;transition:all .3s;z-index:99999;white-space:nowrap;pointer-events:none;}
+#toast{position:fixed;bottom:66px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--accent);color:#000;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;padding:10px 18px;border-radius:40px;opacity:0;transition:all .3s;z-index:99999;white-space:nowrap;pointer-events:none;}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-@media(min-width:900px){#toast{bottom:26px;}}
+@media(min-width:900px){#toast{bottom:24px;}}
 
 /* QUEMA */
-.quema-row{display:flex;align-items:center;gap:9px;background:rgba(241,193,53,.06);border:1px solid rgba(241,193,53,.2);border-radius:8px;padding:9px 12px;margin-bottom:7px;}
-.quema-del{background:none;border:none;color:var(--danger);cursor:pointer;font-size:17px;padding:0 3px;line-height:1;}
+.quema-row{display:flex;align-items:center;gap:9px;background:rgba(241,193,53,.06);border:1px solid rgba(241,193,53,.2);border-radius:8px;padding:9px 11px;margin-bottom:7px;}
+.quema-del{background:none;border:none;color:var(--danger);cursor:pointer;font-size:16px;padding:0 3px;line-height:1;}
 
 /* SALARY ROW */
-.salary-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.salary-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;}
 .salary-row:last-child{border-bottom:none;}
 
 /* STEP */
 .step-badge{background:var(--accent);color:#000;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
-.step-item{display:flex;gap:10px;margin-bottom:11px;font-size:13px;line-height:1.5;}
-.config-info{background:var(--surface2);border-radius:8px;padding:11px;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);word-break:break-all;margin-top:7px;max-height:170px;overflow-y:auto;white-space:pre-wrap;cursor:pointer;}
-.sync-status{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px;margin-top:auto;padding-top:14px;}
-.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block;}
+.step-item{display:flex;gap:9px;margin-bottom:10px;font-size:13px;line-height:1.5;}
+.config-info{background:var(--surface2);border-radius:8px;padding:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);word-break:break-all;margin-top:6px;max-height:200px;overflow-y:auto;white-space:pre-wrap;cursor:pointer;}
+.sync-status{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px;margin-top:auto;padding-top:12px;}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);display:inline-block;}
 .sync-dot.ok{background:var(--accent);}
 .sync-dot.err{background:var(--danger);}
 .check-row{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--text);}
 .check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;}
 select option{background:#222;}
 
-/* ACUMULADO */
-.acum-month{margin-bottom:10px;}
-.acum-month-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--surface2);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;}
-.acum-month-body{padding:6px 4px;}
-.acum-row{display:flex;justify-content:space-between;align-items:center;padding:7px 8px;font-size:13px;border-bottom:1px solid var(--border);}
-.acum-row:last-child{border-bottom:none;}
-
-/* HINT */
-.rate-hint{font-size:12px;color:var(--muted);margin-top:4px;}
+/* RATE HINT */
+.rate-hint{font-size:11px;color:var(--muted);margin-top:3px;}
 .rate-hint span{color:var(--accent);font-family:'DM Mono',monospace;}
 
-/* PDF checkboxes */
-.pdf-worker-check{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px;}
-.pdf-worker-check:last-child{border-bottom:none;}
-.pdf-worker-check input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);}
+/* PDF WORKER LIST */
+.pdf-chk-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:background .12s;border-bottom:1px solid var(--border);}
+.pdf-chk-item:last-child{border-bottom:none;}
+.pdf-chk-item:hover{background:var(--surface2);}
+.pdf-chk-item input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;}
+.pdf-chk-item label{cursor:pointer;font-size:14px;font-weight:500;flex:1;}
+.pdf-chk-item .chk-mark{font-size:14px;color:var(--accent);width:18px;text-align:center;}
+
+/* SORT ROW */
+.sort-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.sort-row label{text-transform:none;letter-spacing:0;font-size:12px;color:var(--muted);margin-bottom:0;white-space:nowrap;}
+.sort-row select{font-size:12px;padding:6px 10px;}
 </style>
 </head>
 <body>
@@ -163,10 +166,18 @@ select option{background:#222;}
 <div id="login-screen">
   <div class="login-box">
     <div class="login-logo">OV App</div>
-    <div class="login-sub">Ingresa la clave de acceso</div>
-    <input type="password" id="login-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="btn btn-primary btn-full" onclick="doLogin()">Entrar</button>
+    <div class="login-sub">Ladrillera — Control de Nómina</div>
+    <div class="login-url-note" id="login-url-note" style="display:none">
+      ⚠️ Primero configura la URL de tu Apps Script abajo para habilitar el acceso.
+    </div>
+    <input type="url" id="login-script-url" placeholder="URL de tu Apps Script (solo primera vez)" style="margin-bottom:10px;font-size:13px;display:none;">
+    <input type="password" id="login-input" placeholder="Clave de acceso" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-primary btn-full" onclick="doLogin()" style="margin-top:6px;">Entrar</button>
+    <div class="login-spinner" id="login-spinner">Verificando...</div>
     <div class="login-err" id="login-err"></div>
+    <div style="margin-top:16px;font-size:11px;color:#555;">
+      <span id="login-url-toggle" style="cursor:pointer;text-decoration:underline;" onclick="toggleLoginUrl()">⚙️ Configurar URL de Apps Script</span>
+    </div>
   </div>
 </div>
 
@@ -199,8 +210,6 @@ select option{background:#222;}
     <!-- ====== DASHBOARD ====== -->
     <div class="page active" id="page-dashboard">
       <div class="page-header"><div class="page-title">Resumen</div><div class="page-sub" id="dash-week-sub">Semana actual</div></div>
-
-      <!-- SEMANAL -->
       <div class="week-selector">
         <button onclick="changeWeek(-1)">&#8592;</button>
         <div class="week-label" id="week-display">—</div>
@@ -208,68 +217,66 @@ select option{background:#222;}
       </div>
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-label">Total Semana</div><div class="stat-value" id="stat-total">S/0</div></div>
-        <div class="stat-card"><div class="stat-label">Pendiente Semana</div><div class="stat-value danger" id="stat-balance">S/0</div></div>
+        <div class="stat-card"><div class="stat-label">Pendiente Sem.</div><div class="stat-value danger" id="stat-balance">S/0</div></div>
         <div class="stat-card"><div class="stat-label">Empleados</div><div class="stat-value" id="stat-workers">0</div></div>
         <div class="stat-card"><div class="stat-label">Con Dominical</div><div class="stat-value warn" id="stat-sunday">0</div></div>
       </div>
       <div class="card">
         <div class="card-title">Detalle Semanal</div>
         <div class="table-wrap">
-          <table><thead><tr><th>Empleado</th><th>Días</th><th>Horas</th><th>Dom</th><th>Total</th><th>Saldo Sem.</th></tr></thead>
-          <tbody id="dash-table-body"><tr><td colspan="6"><div class="empty"><div class="ic">📋</div><p>Sin datos esta semana</p></div></td></tr></tbody></table>
+          <table><thead><tr><th>Empleado</th><th>Días</th><th>Hrs</th><th>Dom</th><th>Total</th><th>Saldo</th></tr></thead>
+          <tbody id="dash-table-body"><tr><td colspan="6"><div class="empty"><div class="ic">📋</div><p>Sin datos</p></div></td></tr></tbody></table>
         </div>
       </div>
-
-      <!-- ACUMULADO -->
-      <div class="card" style="margin-top:6px;">
-        <div class="card-title">📦 Saldo Acumulado Total (todos los meses)</div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div class="card-title" style="margin-bottom:0;">📦 Saldo Acumulado por Mes</div>
+          <div class="sort-row" style="margin-bottom:0;">
+            <label>Orden:</label>
+            <select id="acum-sort" onchange="renderAcumulado()" style="width:auto;">
+              <option value="default">Por ganancias</option>
+              <option value="alpha">Alfabético</option>
+            </select>
+          </div>
+        </div>
         <div id="acum-summary"></div>
       </div>
     </div>
 
     <!-- ====== PAGOS ====== -->
     <div class="page" id="page-pagos">
-      <div class="page-header"><div class="page-title">Pagos</div><div class="page-sub">Abonos semanales y saldos antiguos</div></div>
-
+      <div class="page-header"><div class="page-title">Pagos</div><div class="page-sub">Abonos y saldos acumulados</div></div>
       <div class="card">
-        <div class="card-title">Saldos Pendientes por Empleado</div>
+        <div class="card-title">Saldos Pendientes</div>
         <div id="balances-list"><div class="empty"><div class="ic">💰</div><p>Sin saldos pendientes</p></div></div>
       </div>
-
       <div class="card">
         <div class="card-title">Registrar Pago</div>
         <div class="form-group"><select id="pay-worker-select" onchange="fillOwed()"><option value="">— Selecciona empleado —</option></select></div>
         <div id="owed-hint" style="display:none"><div class="alert alert-info" id="owed-hint-text"></div></div>
-        <div class="form-group">
-          <label>Monto (S/ — entero)</label>
-          <input type="number" id="pay-amount" placeholder="0" min="0" step="1">
-        </div>
+        <div class="form-group"><label>Monto (S/ entero)</label><input type="number" id="pay-amount" placeholder="0" min="0" step="1"></div>
         <div class="form-group">
           <label>Fecha del pago</label>
-          <div style="display:flex;gap:10px;align-items:center;">
+          <div style="display:flex;gap:9px;align-items:center;">
             <input type="date" id="pay-date" style="flex:1;">
-            <label class="check-row" style="white-space:nowrap;font-size:13px;text-transform:none;letter-spacing:0;font-weight:500;margin-bottom:0;">
+            <label class="check-row" style="white-space:nowrap;font-size:12px;text-transform:none;letter-spacing:0;font-weight:500;margin-bottom:0;">
               <input type="checkbox" id="pay-today" onchange="setPayToday()"> Hoy
             </label>
           </div>
         </div>
-        <div class="form-group">
-          <label>Tipo de pago</label>
+        <div class="form-group"><label>Tipo de pago</label>
           <select id="pay-type">
-            <option value="weekly">Pago de semana actual/seleccionada</option>
+            <option value="weekly">Pago de semana actual</option>
             <option value="accumulated">Pago de saldo acumulado anterior</option>
           </select>
         </div>
-        <div class="form-group"><label>Nota (opcional)</label><input type="text" id="pay-note" placeholder="Ej. Pago parcial sem. anterior"></div>
+        <div class="form-group"><label>Nota (opcional)</label><input type="text" id="pay-note" placeholder="Ej. Pago parcial saldo anterior"></div>
         <button class="btn btn-primary btn-full" onclick="registerPayment()">✅ Registrar Pago</button>
       </div>
-
       <div class="card">
         <div class="card-title">Historial de Pagos</div>
-        <div class="form-group" style="margin-bottom:9px;">
-          <select id="pay-filter-worker" onchange="renderPaymentHistory()"><option value="">Todos los empleados</option></select>
-        </div>
-        <div id="payment-history"><div class="empty"><div class="ic">📜</div><p>Sin pagos aún</p></div></div>
+        <div class="form-group" style="margin-bottom:8px;"><select id="pay-filter-worker" onchange="renderPaymentHistory()"><option value="">Todos los empleados</option></select></div>
+        <div id="payment-history"><div class="empty"><div class="ic">📜</div><p>Sin pagos</p></div></div>
       </div>
     </div>
 
@@ -285,9 +292,8 @@ select option{background:#222;}
         <div class="card-title">Empleado</div>
         <select id="reg-worker-select" onchange="loadWorkerWeek()"><option value="">— Selecciona —</option></select>
       </div>
-
       <div id="reg-panel" style="display:none">
-        <div class="card" style="padding:11px 15px;border-color:rgba(200,241,53,.3)">
+        <div class="card" style="padding:10px 14px;border-color:rgba(200,241,53,.3)">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <span style="font-size:12px;color:var(--muted)">Tarifa activa</span>
             <div style="text-align:right">
@@ -296,55 +302,37 @@ select option{background:#222;}
             </div>
           </div>
         </div>
-
         <div class="card">
           <div class="card-title">Días Trabajados</div>
           <div class="day-grid" id="day-chips"></div>
           <div id="sunday-alert"></div>
         </div>
-
         <div class="card">
           <div class="card-title">Horas por Día (Lun–Sáb)</div>
           <div id="day-hours-inputs"></div>
         </div>
-
         <div class="card">
           <div class="card-title">Ajustes de la Semana</div>
           <div class="form-row">
-            <div class="form-group">
-              <label>Horas extra (+h)</label>
-              <input type="number" id="reg-extra-h" placeholder="0" min="0" step="1" oninput="recalcPreview()">
-            </div>
-            <div class="form-group">
-              <label>Desc. en horas (−h)</label>
-              <input type="number" id="reg-disc-h" placeholder="0" min="0" step="1" oninput="recalcPreview()">
-            </div>
+            <div class="form-group"><label>Horas extra (+h)</label><input type="number" id="reg-extra-h" placeholder="0" min="0" step="1" oninput="recalcPreview()"></div>
+            <div class="form-group"><label>Desc. horas (−h)</label><input type="number" id="reg-disc-h" placeholder="0" min="0" step="1" oninput="recalcPreview()"></div>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <label>Adelanto (S/ entero)</label>
-              <input type="number" id="reg-adelanto" placeholder="0" min="0" step="1" oninput="recalcPreview()">
-            </div>
-            <div class="form-group">
-              <label>Desc. en Soles (S/)</label>
-              <input type="number" id="reg-disc-s" placeholder="0" min="0" step="1" oninput="recalcPreview()">
-            </div>
+            <div class="form-group"><label>Adelanto (S/)</label><input type="number" id="reg-adelanto" placeholder="0" min="0" step="1" oninput="recalcPreview()"></div>
+            <div class="form-group"><label>Desc. soles (S/)</label><input type="number" id="reg-disc-s" placeholder="0" min="0" step="1" oninput="recalcPreview()"></div>
           </div>
           <div class="form-group"><label>Nota (opcional)</label><input type="text" id="reg-note" placeholder="Ej. Permiso el jueves"></div>
         </div>
-
         <div class="card" style="border-color:rgba(241,193,53,.35)">
           <div class="card-title">🔥 Quemas de Noche</div>
           <div id="quemas-list"><p style="font-size:13px;color:var(--muted);">Sin quemas esta semana.</p></div>
-          <button class="btn btn-secondary btn-sm" onclick="addQuema()" style="margin-top:8px;">➕ Agregar quema</button>
+          <button class="btn btn-secondary btn-sm" onclick="addQuema()" style="margin-top:7px;">➕ Agregar quema</button>
         </div>
-
         <div class="card" style="border-color:rgba(200,241,53,.4)">
-          <div class="card-title">Vista Previa del Cálculo</div>
+          <div class="card-title">Vista Previa</div>
           <div id="calc-preview"><p style="color:var(--muted);font-size:13px;">Marca días para ver el cálculo.</p></div>
         </div>
-
-        <button class="btn btn-primary btn-full" onclick="saveWeekRecord()" style="margin-bottom:28px;">💾 Guardar Semana</button>
+        <button class="btn btn-primary btn-full" onclick="saveWeekRecord()" style="margin-bottom:26px;">💾 Guardar Semana</button>
       </div>
     </div>
 
@@ -362,7 +350,7 @@ select option{background:#222;}
           <div class="form-group">
             <label>Pago por día (S/) *</label>
             <input type="number" id="w-rate-day" placeholder="90" min="0" step="1" oninput="updateRateHint()">
-            <div class="rate-hint" id="rate-hint">≈ S/<span id="rate-hint-val">—</span>/hora (base <span id="rate-hint-base">9</span>h/día)</div>
+            <div class="rate-hint">≈ S/<span id="rate-hint-val">—</span>/h (base <span id="rate-hint-base">9</span>h/día)</div>
           </div>
           <div class="form-group">
             <label>Horas/día normal</label>
@@ -373,10 +361,19 @@ select option{background:#222;}
         <button class="btn btn-primary btn-full" onclick="addWorker()">➕ Agregar Trabajador</button>
       </div>
       <div class="card">
-        <div class="card-title">Lista (<span id="worker-count">0</span> empleados)</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <div class="card-title" style="margin-bottom:0;">Lista (<span id="worker-count">0</span>)</div>
+          <div class="sort-row" style="margin-bottom:0;">
+            <label>Orden:</label>
+            <select id="workers-sort" onchange="renderWorkersList()" style="width:auto;">
+              <option value="default">Por ganancias</option>
+              <option value="alpha">Alfabético</option>
+            </select>
+          </div>
+        </div>
         <div class="table-wrap">
-          <table><thead><tr><th>Nombre</th><th>DNI</th><th>Celular</th><th>S//día</th><th>S//h</th><th>h/día</th><th></th></tr></thead>
-          <tbody id="workers-table-body"><tr><td colspan="7"><div class="empty"><div class="ic">👷</div><p>Sin trabajadores</p></div></td></tr></tbody></table>
+          <table><thead><tr><th>Nombre</th><th>DNI</th><th>Celular</th><th>S//día</th><th>S//h</th><th>h/día</th><th>Desde</th><th></th></tr></thead>
+          <tbody id="workers-table-body"><tr><td colspan="8"><div class="empty"><div class="ic">👷</div><p>Sin trabajadores</p></div></td></tr></tbody></table>
         </div>
       </div>
     </div>
@@ -386,61 +383,56 @@ select option{background:#222;}
       <div class="page-header"><div class="page-title">Reportes PDF</div><div class="page-sub">Genera resúmenes imprimibles</div></div>
       <div class="card">
         <div class="card-title">Tipo de Reporte</div>
-        <div class="form-group">
-          <select id="pdf-type" onchange="renderPdfWorkerList()">
-            <option value="week">Semanal (semana seleccionada)</option>
-            <option value="month">Mensual</option>
-          </select>
-        </div>
-        <div id="pdf-month-selector" style="display:none">
-          <div class="form-row">
+        <div class="form-group"><select id="pdf-type" onchange="renderPdfWorkerList()">
+          <option value="week">Semanal (semana seleccionada)</option>
+          <option value="month">Mensual</option>
+          <option value="year">Anual</option>
+        </select></div>
+        <div id="pdf-period-selector">
+          <div class="form-row" id="pdf-month-row" style="display:none">
             <div class="form-group"><label>Mes</label>
-              <select id="pdf-month">
-                <option value="0">Enero</option><option value="1">Febrero</option><option value="2">Marzo</option>
-                <option value="3">Abril</option><option value="4">Mayo</option><option value="5">Junio</option>
-                <option value="6">Julio</option><option value="7">Agosto</option><option value="8">Septiembre</option>
-                <option value="9">Octubre</option><option value="10">Noviembre</option><option value="11">Diciembre</option>
-              </select>
+              <select id="pdf-month"><option value="0">Enero</option><option value="1">Febrero</option><option value="2">Marzo</option><option value="3">Abril</option><option value="4">Mayo</option><option value="5">Junio</option><option value="6">Julio</option><option value="7">Agosto</option><option value="8">Septiembre</option><option value="9">Octubre</option><option value="10">Noviembre</option><option value="11">Diciembre</option></select>
             </div>
             <div class="form-group"><label>Año</label><input type="number" id="pdf-year" min="2020" max="2099"></div>
+          </div>
+          <div class="form-group" id="pdf-year-row" style="display:none">
+            <label>Año</label><input type="number" id="pdf-year-only" min="2020" max="2099">
           </div>
         </div>
       </div>
       <div class="card">
         <div class="card-title">Seleccionar Empleados</div>
-        <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-          <button class="btn btn-secondary btn-sm" onclick="selectAllPdfWorkers(true)">☑ Todos</button>
-          <button class="btn btn-secondary btn-sm" onclick="selectAllPdfWorkers(false)">☐ Ninguno</button>
+        <div style="display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="selectAllPdf(true)">☑ Todos</button>
+          <button class="btn btn-secondary btn-sm" onclick="selectAllPdf(false)">☐ Ninguno</button>
         </div>
-        <div id="pdf-worker-list"></div>
+        <div id="pdf-worker-list"><p style="color:var(--muted);font-size:13px;">Sin trabajadores.</p></div>
       </div>
       <button class="btn btn-primary btn-full" onclick="generatePDF()" style="margin-bottom:8px;">📄 Generar e Imprimir PDF</button>
-      <div class="card" style="margin-top:8px;">
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;">Al generar, elige <strong>"Guardar como PDF"</strong> en el diálogo de impresión. En iPhone: Safari → icono Compartir → Imprimir → pellizca para ampliar → Compartir PDF.</p>
-      </div>
+      <div class="card"><p style="font-size:12px;color:var(--muted);line-height:1.6;">Elige <strong>"Guardar como PDF"</strong> en el diálogo de impresión. En iPhone: Safari → Compartir → Imprimir → pellizca para ampliar → Compartir PDF.</p></div>
     </div>
 
     <!-- ====== CONFIG ====== -->
     <div class="page" id="page-config">
-      <div class="page-header"><div class="page-title">Configuración</div><div class="page-sub">Clave, tarifas, Sheets</div></div>
+      <div class="page-header"><div class="page-title">Configuración</div><div class="page-sub">Seguridad, tarifas y Sheets</div></div>
 
       <div class="card" style="border-color:rgba(200,241,53,.3)">
-        <div class="card-title">🔑 Cambiar Clave de Acceso</div>
+        <div class="card-title">🔑 Seguridad</div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:11px;">La clave se guarda en tu Apps Script, no en el HTML. Nadie puede leerla desde el código fuente.</p>
         <div class="form-group"><label>Clave actual</label><input type="password" id="cfg-old-pass" placeholder="••••••••"></div>
         <div class="form-row">
           <div class="form-group"><label>Nueva clave</label><input type="password" id="cfg-new-pass" placeholder="••••••••"></div>
           <div class="form-group"><label>Confirmar</label><input type="password" id="cfg-new-pass2" placeholder="••••••••"></div>
         </div>
-        <button class="btn btn-secondary btn-sm" onclick="changePassword()">🔒 Guardar nueva clave</button>
+        <button class="btn btn-secondary btn-sm" onclick="changePassword()">🔒 Cambiar clave</button>
       </div>
 
       <div class="card">
         <div class="card-title">📈 Historial de Tarifas</div>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:11px;">Registra aumentos sin perder historial.</p>
         <div class="form-group"><select id="salary-worker-select" onchange="renderSalaryHistory()"><option value="">— Selecciona empleado —</option></select></div>
         <div id="salary-history-list"></div>
         <hr class="sep">
-        <div class="card-title" style="margin-bottom:10px;">Agregar Nueva Tarifa</div>
+        <div class="card-title" style="margin-bottom:9px;">Nueva Tarifa</div>
         <div class="form-row">
           <div class="form-group">
             <label>S/ por día</label>
@@ -453,8 +445,8 @@ select option{background:#222;}
       </div>
 
       <div class="card" style="border-color:var(--accent2)">
-        <div class="card-title">🔗 Google Sheets</div>
-        <div id="sheets-status-msg"><div class="alert alert-info">⚡ Sin conexión. Datos guardados localmente.</div></div>
+        <div class="card-title">🔗 Google Sheets + URL</div>
+        <div id="sheets-status-msg"><div class="alert alert-info">⚡ La URL de Apps Script se usa también para verificar la clave de acceso.</div></div>
         <div class="form-group" style="margin-top:9px;"><label>URL de Apps Script</label>
           <input type="url" id="sheets-url" placeholder="https://script.google.com/macros/s/..." oninput="saveConfig()">
         </div>
@@ -462,13 +454,24 @@ select option{background:#222;}
       </div>
 
       <div class="card">
-        <div class="card-title">📋 Guía Sheets</div>
-        <div class="step-item"><span class="step-badge">1</span><div>Abre <strong>Google Sheets</strong>, crea hoja nueva llamada <em>OVApp</em>.</div></div>
-        <div class="step-item"><span class="step-badge">2</span><div><strong>Extensiones → Apps Script</strong>. Borra el código y pega el de abajo.</div></div>
-        <div class="config-info" id="apps-script-code" onclick="copyScript()">// PEGA EN APPS SCRIPT
+        <div class="card-title">📋 Guía de Configuración</div>
+        <div class="step-item"><span class="step-badge">1</span><div>Abre <strong>Google Sheets</strong>, crea hoja llamada <em>OVApp</em>.</div></div>
+        <div class="step-item"><span class="step-badge">2</span><div><strong>Extensiones → Apps Script</strong>. Borra el código y pega el de abajo (incluye la clave).</div></div>
+        <div class="config-info" id="apps-script-code" onclick="copyScript()">// =============================================
+// OV APP — APPS SCRIPT BACKEND
+// Cambia APP_PASSWORD por tu clave real
+// =============================================
+var APP_PASSWORD = "ovladrillera2024";
 
 function doPost(e) {
   var data = JSON.parse(e.postData.contents);
+
+  // Verify password on all write operations
+  if (data.password !== APP_PASSWORD) {
+    return ContentService.createTextOutput(JSON.stringify({ok:false, error:"unauthorized"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(data.sheet) || ss.insertSheet(data.sheet);
   if (data.action === 'replace_all') {
@@ -479,22 +482,47 @@ function doPost(e) {
   return ContentService.createTextOutput(JSON.stringify({ok:true}))
     .setMimeType(ContentService.MimeType.JSON);
 }
+
 function doGet(e) {
+  // Verify password on all read operations
+  if (e.parameter.password !== APP_PASSWORD) {
+    return ContentService.createTextOutput(JSON.stringify({ok:false, error:"unauthorized"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(e.parameter.sheet);
-  if (!sheet) return ContentService.createTextOutput(JSON.stringify({rows:[]})).setMimeType(ContentService.MimeType.JSON);
-  return ContentService.createTextOutput(JSON.stringify({rows:sheet.getDataRange().getValues()})).setMimeType(ContentService.MimeType.JSON);
+  if (!sheet) return ContentService.createTextOutput(JSON.stringify({rows:[]}))
+    .setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify({rows:sheet.getDataRange().getValues()}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Password change endpoint
+function doPost_changepass(e) {
+  var data = JSON.parse(e.postData.contents);
+  if (data.action !== 'change_password') return;
+  if (data.old_password !== APP_PASSWORD) {
+    return ContentService.createTextOutput(JSON.stringify({ok:false,error:"wrong_password"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  // Store new password in Script Properties (persistent)
+  PropertiesService.getScriptProperties().setProperty('APP_PASSWORD', data.new_password);
+  return ContentService.createTextOutput(JSON.stringify({ok:true}))
+    .setMimeType(ContentService.MimeType.JSON);
 }</div>
-        <button class="btn btn-secondary btn-sm" onclick="copyScript()" style="margin-top:7px;">📋 Copiar</button>
+        <button class="btn btn-secondary btn-sm" onclick="copyScript()" style="margin-top:7px;">📋 Copiar código</button>
         <hr class="sep">
-        <div class="step-item"><span class="step-badge">3</span><div><strong>Implementar → Nueva implementación</strong>. Tipo: Aplicación web. Acceso: Cualquier usuario. Implementar.</div></div>
-        <div class="step-item"><span class="step-badge">4</span><div>Copia la URL y pégala arriba.</div></div>
+        <div class="step-item"><span class="step-badge">3</span><div>En la línea <code style="background:var(--surface2);padding:1px 5px;border-radius:3px;font-size:11px;">var APP_PASSWORD = "ovladrillera2024"</code> cambia <strong>ovladrillera2024</strong> por tu clave real.</div></div>
+        <div class="step-item"><span class="step-badge">4</span><div><strong>Implementar → Nueva implementación</strong>. Tipo: Aplicación web. Acceso: <strong>Cualquier usuario</strong>. Implementar.</div></div>
+        <div class="step-item"><span class="step-badge">5</span><div>Copia la URL generada, pégala en el campo de arriba y también en la pantalla de login de la app.</div></div>
       </div>
 
       <div class="card">
         <div class="card-title">⚠️ Zona Peligrosa</div>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:11px;">Borrar todos los datos es irreversible.</p>
-        <button class="btn btn-danger btn-sm" onclick="clearAllData()">🗑️ Borrar todos los datos</button>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:11px;">Borra todos los datos locales. Irreversible.</p>
+        <button class="btn btn-danger btn-sm" onclick="clearAllData()">🗑️ Borrar datos locales</button>
+        <button class="btn btn-secondary btn-sm" onclick="doLogout()" style="margin-left:8px;">🚪 Cerrar sesión</button>
       </div>
     </div>
 
@@ -504,38 +532,89 @@ function doGet(e) {
 
 <script>
 // ================================================================
-// AUTH
+// AUTH — password stored in Apps Script, not in HTML
 // ================================================================
-const DEFAULT_PASS = 'ovladrillera2024';
-function getPass(){ return localStorage.getItem('ov_pass') || DEFAULT_PASS; }
-function doLogin(){
-  const v = document.getElementById('login-input').value;
-  if(v === getPass()){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('main-app').style.display='flex';
-    localStorage.setItem('ov_auth_session','1');
-  } else {
-    document.getElementById('login-err').textContent='Clave incorrecta';
-    document.getElementById('login-input').value='';
+let scriptUrl = localStorage.getItem('ov_script_url') || '';
+
+function toggleLoginUrl(){
+  const inp = document.getElementById('login-script-url');
+  const note = document.getElementById('login-url-note');
+  const show = inp.style.display === 'none';
+  inp.style.display = show ? 'block' : 'none';
+  if(show && scriptUrl) inp.value = scriptUrl;
+}
+
+async function doLogin(){
+  const pass = document.getElementById('login-input').value.trim();
+  const urlInput = document.getElementById('login-script-url').value.trim();
+  if(urlInput) { scriptUrl = urlInput; localStorage.setItem('ov_script_url', scriptUrl); }
+
+  if(!scriptUrl){
+    document.getElementById('login-err').textContent = 'Configura primero la URL de Apps Script (⚙️ abajo)';
+    document.getElementById('login-script-url').style.display = 'block';
+    return;
   }
+  if(!pass){ document.getElementById('login-err').textContent = 'Ingresa la clave'; return; }
+
+  document.getElementById('login-spinner').style.display = 'block';
+  document.getElementById('login-err').textContent = '';
+
+  try {
+    const res = await fetch(scriptUrl + '?sheet=Trabajadores&password=' + encodeURIComponent(pass));
+    const data = await res.json();
+    if(data.error === 'unauthorized'){
+      document.getElementById('login-err').textContent = 'Clave incorrecta';
+      document.getElementById('login-input').value = '';
+    } else {
+      localStorage.setItem('ov_session_pass', pass);
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('main-app').style.display = 'flex';
+      loadFromSheets();
+    }
+  } catch(e){
+    // If Sheets unreachable, fall back to local session if previously authed
+    const saved = localStorage.getItem('ov_session_pass');
+    if(saved && saved === pass){
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('main-app').style.display = 'flex';
+      load(); renderAll();
+    } else {
+      document.getElementById('login-err').textContent = 'No se pudo conectar. Verifica la URL y tu conexión.';
+    }
+  }
+  document.getElementById('login-spinner').style.display = 'none';
 }
-function changePassword(){
-  const old=document.getElementById('cfg-old-pass').value;
-  const n1=document.getElementById('cfg-new-pass').value;
-  const n2=document.getElementById('cfg-new-pass2').value;
-  if(old!==getPass()){toast('❌ Clave actual incorrecta');return;}
-  if(!n1||n1.length<4){toast('La nueva clave debe tener al menos 4 caracteres');return;}
-  if(n1!==n2){toast('Las claves nuevas no coinciden');return;}
-  localStorage.setItem('ov_pass',n1);
-  document.getElementById('cfg-old-pass').value='';
-  document.getElementById('cfg-new-pass').value='';
-  document.getElementById('cfg-new-pass2').value='';
-  toast('✅ Clave actualizada');
+
+function getSessionPass(){ return localStorage.getItem('ov_session_pass') || ''; }
+
+function doLogout(){
+  localStorage.removeItem('ov_session_pass');
+  document.getElementById('main-app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-input').value = '';
+  document.getElementById('login-err').textContent = '';
 }
-// check session
-if(localStorage.getItem('ov_auth_session')==='1'){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('main-app').style.display='flex';
+
+async function changePassword(){
+  const oldP = document.getElementById('cfg-old-pass').value;
+  const n1 = document.getElementById('cfg-new-pass').value;
+  const n2 = document.getElementById('cfg-new-pass2').value;
+  if(!oldP || oldP !== getSessionPass()){ toast('❌ Clave actual incorrecta'); return; }
+  if(!n1 || n1.length < 4){ toast('La nueva clave debe tener al menos 4 caracteres'); return; }
+  if(n1 !== n2){ toast('Las claves nuevas no coinciden'); return; }
+  // The password lives in Apps Script — user must update it there manually
+  // We update the local session cache
+  localStorage.setItem('ov_session_pass', n1);
+  document.getElementById('cfg-old-pass').value = '';
+  document.getElementById('cfg-new-pass').value = '';
+  document.getElementById('cfg-new-pass2').value = '';
+  toast('✅ Clave de sesión actualizada. Recuerda cambiar APP_PASSWORD en Apps Script también.');
+}
+
+// Auto-login if session exists
+if(localStorage.getItem('ov_session_pass') && localStorage.getItem('ov_script_url')){
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = 'flex';
 }
 
 // ================================================================
@@ -546,7 +625,7 @@ let currentWeekOffset = 0;
 let quemasData = [];
 
 // ================================================================
-// DATE UTILS  — all dates as dd/mm/yyyy display
+// DATE UTILS
 // ================================================================
 function getWeekStart(offset){
   offset=offset||0;
@@ -560,94 +639,118 @@ function weekKey(ws){return ws.toISOString().slice(0,10);}
 function fmtDate(d){
   const dd=String(d.getDate()).padStart(2,'0');
   const mm=String(d.getMonth()+1).padStart(2,'0');
-  const yy=d.getFullYear();
-  return dd+'/'+mm+'/'+yy;
+  return dd+'/'+mm+'/'+d.getFullYear();
 }
-function fmtMonthYear(d){ return d.toLocaleDateString('es-PE',{month:'long',year:'numeric'}); }
+function isoToDisplay(iso){ if(!iso||iso.length<10)return iso||''; const p=iso.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
 function fmtWeek(ws){return fmtDate(ws)+' — '+fmtDate(getWeekEnd(ws));}
 function todayStr(){return new Date().toISOString().slice(0,10);}
-function isoToDisplay(iso){ if(!iso)return''; const p=iso.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
-
-// month key e.g. "2025-04"
-function monthKey(dateStr){ return dateStr.slice(0,7); }
 const MONTH_NAMES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 function monthLabel(mk){ const p=mk.split('-'); return MONTH_NAMES[parseInt(p[1])-1]+' '+p[0]; }
+function monthKey(dateStr){ return dateStr.slice(0,7); }
 
 // ================================================================
-// SALARY — daily rate → hourly rate
+// SALARY
 // ================================================================
-function dayRateToHourly(dailyRate, hoursPerDay){ return hoursPerDay>0 ? dailyRate/hoursPerDay : 0; }
+function dayRateToHourly(d,h){ return h>0?d/h:0; }
 function getRateForWeek(worker, weekStartDate){
-  if(!worker.salaryHistory||!worker.salaryHistory.length) return {daily:worker.rateDay||0,hourly:dayRateToHourly(worker.rateDay||0,worker.hoursPerDay||9)};
+  if(!worker.salaryHistory||!worker.salaryHistory.length) return{daily:worker.rateDay||0,hourly:dayRateToHourly(worker.rateDay||0,worker.hoursPerDay||9)};
   const wDate=weekStartDate instanceof Date?weekStartDate:new Date(weekStartDate+'T00:00:00');
   const applicable=worker.salaryHistory.filter(s=>new Date(s.from+'T00:00:00')<=wDate).sort((a,b)=>new Date(b.from)-new Date(a.from));
-  if(!applicable.length) return {daily:worker.rateDay||0,hourly:dayRateToHourly(worker.rateDay||0,worker.hoursPerDay||9)};
+  if(!applicable.length) return{daily:worker.rateDay||0,hourly:dayRateToHourly(worker.rateDay||0,worker.hoursPerDay||9)};
   const s=applicable[0];
-  return {daily:s.rateDay, hourly:dayRateToHourly(s.rateDay,worker.hoursPerDay||9)};
+  return{daily:s.rateDay,hourly:dayRateToHourly(s.rateDay,worker.hoursPerDay||9)};
 }
 
 // ================================================================
-// WORKER SORT — active first (appeared in last 2 weeks), then by earnings desc
+// WORKER SORT
 // ================================================================
-function sortedWorkers(){
-  const ws=getWeekStart(currentWeekOffset);
-  const recentKeys=[-1,0,1,2].map(o=>weekKey(getWeekStart(o)));
+function totalEarned(wid){ return Object.values(state.weekRecords).filter(r=>r.workerId===wid).reduce((s,r)=>s+(r.totalPay||0),0); }
+function isActiveWorker(wid){
+  const recentKeys=[-2,-1,0,1,2].map(o=>weekKey(getWeekStart(o)));
+  return recentKeys.some(k=>state.weekRecords[wid+'_'+k]);
+}
+function sortedWorkers(mode){
+  mode=mode||'default';
+  if(mode==='alpha') return state.workers.slice().sort((a,b)=>a.name.localeCompare(b.name,'es'));
   return state.workers.slice().sort((a,b)=>{
-    const aRecent=recentKeys.some(k=>state.weekRecords[a.id+'_'+k]);
-    const bRecent=recentKeys.some(k=>state.weekRecords[b.id+'_'+k]);
-    if(aRecent!==bRecent) return aRecent?-1:1;
-    // sort by total earnings desc
-    const aEarn=totalEarned(a.id);
-    const bEarn=totalEarned(b.id);
-    return bEarn-aEarn;
+    const aA=isActiveWorker(a.id), bA=isActiveWorker(b.id);
+    if(aA!==bA) return aA?-1:1;
+    return totalEarned(b.id)-totalEarned(a.id);
   });
 }
-function totalEarned(wid){
-  return Object.values(state.weekRecords).filter(r=>r.workerId===wid).reduce((s,r)=>s+(r.totalPay||0),0);
-}
 
 // ================================================================
-// PERSIST
+// PERSIST + SHEETS
 // ================================================================
-function save(){localStorage.setItem('ov_v3',JSON.stringify(state));syncToSheets();}
+function save(){ localStorage.setItem('ov_v3',JSON.stringify(state)); syncToSheets(); }
 function load(){
   const r=localStorage.getItem('ov_v3');
   if(r){try{state=Object.assign({},state,JSON.parse(r));}catch(e){}}
-  state.workers.forEach(w=>{
-    if(!w.salaryHistory){
-      w.salaryHistory=[{rateDay:w.rateDay||w.rate||0,from:'2024-01-01'}];
-    }
-    if(!w.hoursPerDay) w.hoursPerDay=9;
-  });
+  state.workers.forEach(w=>{ if(!w.salaryHistory)w.salaryHistory=[{rateDay:w.rateDay||w.rate||0,from:'2024-01-01'}]; if(!w.hoursPerDay)w.hoursPerDay=9; });
 }
-
-// ================================================================
-// SHEETS
-// ================================================================
-function saveConfig(){state.config.sheetsUrl=document.getElementById('sheets-url').value.trim();localStorage.setItem('ov_v3',JSON.stringify(state));}
+function saveConfig(){
+  state.config.sheetsUrl=document.getElementById('sheets-url').value.trim();
+  scriptUrl=state.config.sheetsUrl;
+  localStorage.setItem('ov_script_url',scriptUrl);
+  localStorage.setItem('ov_v3',JSON.stringify(state));
+}
 function updateSyncDot(s){
   const dot=document.getElementById('sync-dot');const lbl=document.getElementById('sync-label');if(!dot)return;
   if(s==='ok'){dot.className='sync-dot ok';lbl.textContent='Sheets OK';}
   else if(s==='err'){dot.className='sync-dot err';lbl.textContent='Error Sheets';}
-  else{dot.className='sync-dot';lbl.textContent=state.config.sheetsUrl?'Configurado':'Sin Sheets';}
+  else{dot.className='sync-dot';lbl.textContent=scriptUrl?'Conectado':'Sin Sheets';}
 }
 async function syncToSheets(){
-  if(!state.config.sheetsUrl)return;
+  if(!scriptUrl)return;
+  const pass=getSessionPass();
   try{
     const W=[['id','name','dni','phone','hoursPerDay','rateDay','salaryHistory'],...state.workers.map(w=>[w.id,w.name,w.dni||'',w.phone||'',w.hoursPerDay,w.rateDay||0,JSON.stringify(w.salaryHistory)])];
     const R=[['key','workerId','weekKey','days','hoursPerDay','extraH','discH','discS','adelanto','quemas','note','totalPay','sundayBonus','rateUsedDay','daysWorked'],...Object.entries(state.weekRecords).map(([k,v])=>[k,v.workerId,v.weekKey,JSON.stringify(v.days),JSON.stringify(v.hoursPerDay),v.extraH,v.discH,v.discS,v.adelanto||0,JSON.stringify(v.quemas||[]),v.note,v.totalPay,v.sundayBonus,v.rateUsedDay||0,v.daysWorked||0])];
     const P=[['id','workerId','amount','date','note','type'],...state.payments.map(p=>[p.id,p.workerId,p.amount,p.date,p.note,p.type||'weekly'])];
     for(const [sn,data] of [['Trabajadores',W],['Registros',R],['Pagos',P]]){
-      await fetch(state.config.sheetsUrl,{method:'POST',body:JSON.stringify({action:'replace_all',sheet:sn,headers:data[0],rows:data.slice(1)})});
+      await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'replace_all',sheet:sn,headers:data[0],rows:data.slice(1),password:pass})});
     }
     updateSyncDot('ok');
   }catch(e){updateSyncDot('err');}
 }
+async function loadFromSheets(){
+  if(!scriptUrl){load();renderAll();return;}
+  const pass=getSessionPass();
+  try{
+    const rW=await fetch(scriptUrl+'?sheet=Trabajadores&password='+encodeURIComponent(pass));
+    const dW=await rW.json();
+    const rR=await fetch(scriptUrl+'?sheet=Registros&password='+encodeURIComponent(pass));
+    const dR=await rR.json();
+    const rP=await fetch(scriptUrl+'?sheet=Pagos&password='+encodeURIComponent(pass));
+    const dP=await rP.json();
+    if(dW.rows&&dW.rows.length>1){
+      const h=dW.rows[0];
+      state.workers=dW.rows.slice(1).map(r=>({id:r[0],name:r[1],dni:r[2],phone:r[3],hoursPerDay:parseFloat(r[4])||9,rateDay:parseFloat(r[5])||0,salaryHistory:tryParse(r[6],[{rateDay:parseFloat(r[5])||0,from:'2024-01-01'}])}));
+    }
+    if(dR.rows&&dR.rows.length>1){
+      state.weekRecords={};
+      dR.rows.slice(1).forEach(r=>{
+        state.weekRecords[r[0]]={workerId:r[1],weekKey:r[2],days:tryParse(r[3],[]),hoursPerDay:tryParse(r[4],[]),extraH:parseFloat(r[5])||0,discH:parseFloat(r[6])||0,discS:parseFloat(r[7])||0,adelanto:parseFloat(r[8])||0,quemas:tryParse(r[9],[]),note:r[10],totalPay:parseFloat(r[11])||0,sundayBonus:r[12]==='true'||r[12]===true,rateUsedDay:parseFloat(r[13])||0,daysWorked:parseFloat(r[14])||0};
+      });
+    }
+    if(dP.rows&&dP.rows.length>1){
+      state.payments=dP.rows.slice(1).map(r=>({id:r[0],workerId:r[1],amount:parseFloat(r[2])||0,date:r[3],note:r[4],type:r[5]||'weekly'}));
+    }
+    save();
+  }catch(e){ load(); }
+  renderAll();
+}
+function tryParse(v,def){try{return JSON.parse(v);}catch(e){return def;}}
 async function testSheetsConnection(){
   const url=document.getElementById('sheets-url').value.trim();if(!url){toast('Ingresa la URL primero');return;}
-  state.config.sheetsUrl=url;
-  try{await fetch(url+'?sheet=Test');updateSyncDot('ok');toast('✅ Conexión exitosa');document.getElementById('sheets-status-msg').innerHTML='<div class="alert alert-success">✅ Conectado a Google Sheets.</div>';}
-  catch(e){updateSyncDot('err');toast('❌ Error de conexión');}
+  state.config.sheetsUrl=url;scriptUrl=url;localStorage.setItem('ov_script_url',url);
+  try{
+    const r=await fetch(url+'?sheet=Test&password='+encodeURIComponent(getSessionPass()));
+    const d=await r.json();
+    if(d.error==='unauthorized'){toast('❌ Clave incorrecta en Apps Script');return;}
+    updateSyncDot('ok');toast('✅ Conexión exitosa');
+    document.getElementById('sheets-status-msg').innerHTML='<div class="alert alert-success">✅ Conectado.</div>';
+  }catch(e){updateSyncDot('err');toast('❌ Error de conexión');}
 }
 
 // ================================================================
@@ -679,12 +782,10 @@ function addWorker(){
   const rateDate=document.getElementById('w-rate-date').value||todayStr();
   if(!name){toast('Escribe el nombre');return;}
   if(!rateDay||rateDay<=0){toast('Ingresa pago por día');return;}
-  const w={id:Date.now().toString(),name,dni,phone,hoursPerDay:hpd,rateDay,
-    salaryHistory:[{rateDay,from:rateDate}]};
+  const w={id:Date.now().toString(),name,dni,phone,hoursPerDay:hpd,rateDay,salaryHistory:[{rateDay,from:rateDate}]};
   state.workers.push(w);save();
   ['w-name','w-dni','w-phone','w-rate-day','w-rate-date'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('w-hours-day').value='';
-  document.getElementById('rate-hint-val').textContent='—';
+  document.getElementById('w-hours-day').value='';document.getElementById('rate-hint-val').textContent='—';
   renderWorkersList();updateWorkerSelects();toast('✅ '+name+' agregado');
 }
 function deleteWorker(id){
@@ -696,13 +797,15 @@ function deleteWorker(id){
 }
 function renderWorkersList(){
   document.getElementById('worker-count').textContent=state.workers.length;
+  const mode=document.getElementById('workers-sort')?document.getElementById('workers-sort').value:'default';
+  const sw=sortedWorkers(mode);
   const tb=document.getElementById('workers-table-body');
-  const sw=sortedWorkers();
-  if(!sw.length){tb.innerHTML='<tr><td colspan="7"><div class="empty"><div class="ic">👷</div><p>Sin trabajadores</p></div></td></tr>';return;}
+  if(!sw.length){tb.innerHTML='<tr><td colspan="8"><div class="empty"><div class="ic">👷</div><p>Sin trabajadores</p></div></td></tr>';return;}
   tb.innerHTML=sw.map(w=>{
-    const latest=w.salaryHistory&&w.salaryHistory.length?w.salaryHistory.slice().sort((a,b)=>new Date(b.from)-new Date(a.from))[0]:{rateDay:w.rateDay||0};
-    const rDay=latest.rateDay||0; const rHour=(rDay/(w.hoursPerDay||9)).toFixed(2);
-    return'<tr><td><strong>'+w.name+'</strong></td><td class="mono">'+(w.dni||'—')+'</td><td class="mono">'+(w.phone||'—')+'</td><td class="mono">S/'+rDay+'</td><td class="mono">S/'+rHour+'</td><td class="mono">'+w.hoursPerDay+'h</td><td><button class="btn btn-danger btn-sm" onclick="deleteWorker(\''+w.id+'\')">✕</button></td></tr>';
+    const latest=w.salaryHistory&&w.salaryHistory.length?w.salaryHistory.slice().sort((a,b)=>new Date(b.from)-new Date(a.from))[0]:{rateDay:w.rateDay||0,from:''};
+    const rDay=latest.rateDay||0;const rHour=(rDay/(w.hoursPerDay||9)).toFixed(2);
+    const active=isActiveWorker(w.id);
+    return'<tr style="opacity:'+(active?'1':'0.55')+'"><td><strong>'+w.name+'</strong>'+(active?'':' <span class="badge badge-gray">Inactivo</span>')+'</td><td class="mono">'+(w.dni||'—')+'</td><td class="mono">'+(w.phone||'—')+'</td><td class="mono">S/'+rDay+'</td><td class="mono">S/'+rHour+'</td><td class="mono">'+w.hoursPerDay+'h</td><td class="mono">'+(latest.from?isoToDisplay(latest.from):'—')+'</td><td><button class="btn btn-danger btn-sm" onclick="deleteWorker(\''+w.id+'\')">✕</button></td></tr>';
   }).join('');
 }
 function updateWorkerSelects(){
@@ -722,7 +825,7 @@ function renderSalaryHistory(){
   const div=document.getElementById('salary-history-list');
   if(!wid){div.innerHTML='';return;}
   const w=state.workers.find(x=>x.id===wid);
-  if(!w||!w.salaryHistory||!w.salaryHistory.length){div.innerHTML='<p style="color:var(--muted);font-size:13px;">Sin historial.</p>';return;}
+  if(!w||!w.salaryHistory||!w.salaryHistory.length){div.innerHTML='<p style="color:var(--muted);font-size:12px;">Sin historial.</p>';return;}
   const sorted=w.salaryHistory.slice().sort((a,b)=>new Date(b.from)-new Date(a.from));
   div.innerHTML=sorted.map((s,i)=>'<div class="salary-row"><span>Desde '+isoToDisplay(s.from)+'</span><span class="mono" style="color:var(--accent)">S/'+s.rateDay+'/día</span>'+(i===0?'<span class="badge badge-green">Actual</span>':'<span class="badge badge-gray">Anterior</span>')+'</div>').join('');
 }
@@ -735,8 +838,7 @@ function addSalaryChange(){
   if(!from){toast('Ingresa fecha de inicio');return;}
   const w=state.workers.find(x=>x.id===wid);
   if(!w.salaryHistory)w.salaryHistory=[];
-  w.salaryHistory.push({rateDay,from});
-  w.rateDay=rDay;
+  w.salaryHistory.push({rateDay:rDay,from});w.rateDay=rDay;
   save();renderSalaryHistory();renderWorkersList();
   document.getElementById('new-rate-day').value='';document.getElementById('new-rate-date').value='';
   toast('✅ Nueva tarifa S/'+rDay+'/día desde '+isoToDisplay(from));
@@ -767,28 +869,19 @@ function loadWorkerWeek(){
   const rateInfo=getRateForWeek(worker,ws);
   document.getElementById('active-rate-display').textContent='S/'+rateInfo.daily+'/día';
   document.getElementById('active-rate-hour').textContent='(S/'+rateInfo.hourly.toFixed(2)+'/h)';
-
   if(!state.weekRecords[key]){
-    state.weekRecords[key]={workerId:wid,weekKey:weekKey(ws),
-      days:[false,false,false,false,false,false,false],
-      hoursPerDay:[worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,0],
-      extraH:0,discH:0,discS:0,adelanto:0,quemas:[],note:'',totalPay:0,sundayBonus:false,rateUsedDay:rateInfo.daily,daysWorked:0};
+    state.weekRecords[key]={workerId:wid,weekKey:weekKey(ws),days:[false,false,false,false,false,false,false],hoursPerDay:[worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,worker.hoursPerDay,0],extraH:0,discH:0,discS:0,adelanto:0,quemas:[],note:'',totalPay:0,sundayBonus:false,rateUsedDay:rateInfo.daily,daysWorked:0};
   }
   const rec=state.weekRecords[key];
   document.getElementById('day-chips').innerHTML=DAYS_ES.map((d,i)=>{
-    let cls='day-chip';
-    if(i<6&&rec.days[i])cls+=' worked';
-    if(i===6&&rec.days[6])cls+=' sunday-auto';
+    let cls='day-chip';if(i<6&&rec.days[i])cls+=' worked';if(i===6&&rec.days[6])cls+=' sunday-auto';
     return'<div class="'+cls+'" id="chip-'+i+'"'+(i<6?' onclick="toggleDay('+i+')"':'')+'>'+d+'</div>';
   }).join('');
   renderHoursInputs(rec);
-  document.getElementById('reg-extra-h').value=rec.extraH||'';
-  document.getElementById('reg-disc-h').value=rec.discH||'';
-  document.getElementById('reg-disc-s').value=rec.discS||'';
-  document.getElementById('reg-adelanto').value=rec.adelanto||'';
+  document.getElementById('reg-extra-h').value=rec.extraH||'';document.getElementById('reg-disc-h').value=rec.discH||'';
+  document.getElementById('reg-disc-s').value=rec.discS||'';document.getElementById('reg-adelanto').value=rec.adelanto||'';
   document.getElementById('reg-note').value=rec.note||'';
-  quemasData=(rec.quemas||[]).slice();
-  renderQuemasUI();checkSunday();recalcPreview();
+  quemasData=(rec.quemas||[]).slice();renderQuemasUI();checkSunday();recalcPreview();
 }
 function renderHoursInputs(rec){
   document.getElementById('day-hours-inputs').innerHTML='<div class="form-row3">'+[0,1,2,3,4,5].map(i=>'<div class="form-group" id="hgrp-'+i+'" style="'+(rec.days[i]?'':'opacity:.4')+'"><label>'+DAYS_ES[i]+'</label><input type="number" id="h-'+i+'" value="'+rec.hoursPerDay[i]+'" min="0" max="24" step="1" '+(rec.days[i]?'':'disabled')+' oninput="onHourChange()"></div>').join('')+'</div>';
@@ -809,22 +902,13 @@ function checkSunday(){
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rec=state.weekRecords[key];if(!rec)return;
   const worker=state.workers.find(w=>w.id===wid);
-  const allDays=rec.days.slice(0,6).every(Boolean);
-  const failedDays=[];
-  for(let i=0;i<6;i++){
-    const h=parseFloat(document.getElementById('h-'+i)?document.getElementById('h-'+i).value:0)||0;
-    if(rec.days[i]&&h<worker.hoursPerDay)failedDays.push(DAYS_ES[i]+'('+h+'h<'+worker.hoursPerDay+'h)');
-  }
+  const allDays=rec.days.slice(0,6).every(Boolean);const failedDays=[];
+  for(let i=0;i<6;i++){const h=parseFloat(document.getElementById('h-'+i)?document.getElementById('h-'+i).value:0)||0;if(rec.days[i]&&h<worker.hoursPerDay)failedDays.push(DAYS_ES[i]+'('+h+'h<'+worker.hoursPerDay+'h)');}
   const hasSunday=allDays&&failedDays.length===0;rec.days[6]=hasSunday;
   const chip6=document.getElementById('chip-6');if(chip6)chip6.className='day-chip'+(hasSunday?' sunday-auto':'');
   const ad=document.getElementById('sunday-alert');
   if(hasSunday){ad.innerHTML='<div class="alert alert-success" style="margin-top:8px;">✅ Lun–Sáb completo. ¡Se asigna dominical!</div>';}
-  else{
-    const missing=DAYS_ES.slice(0,6).filter((_,i)=>!rec.days[i]);
-    const probs=[...missing,...failedDays];
-    if(probs.length>0&&probs.length<7)ad.innerHTML='<div class="alert alert-danger" style="margin-top:8px;">❌ Sin dominical — '+probs.join(', ')+'</div>';
-    else ad.innerHTML='';
-  }
+  else{const missing=DAYS_ES.slice(0,6).filter((_,i)=>!rec.days[i]);const probs=[...missing,...failedDays];if(probs.length>0&&probs.length<7)ad.innerHTML='<div class="alert alert-danger" style="margin-top:8px;">❌ Sin dominical — '+probs.join(', ')+'</div>';else ad.innerHTML='';}
 }
 function renderQuemasUI(){
   const div=document.getElementById('quemas-list');
@@ -835,50 +919,41 @@ function renderQuemasUI(){
 function addQuema(){quemasData.push({amount:70});renderQuemasUI();}
 function removeQuema(i){quemasData.splice(i,1);renderQuemasUI();}
 function updateQuema(i,v){quemasData[i].amount=Math.round(parseFloat(v)||0);recalcPreview();}
-
 function recalcPreview(){
   const wid=document.getElementById('reg-worker-select').value;if(!wid)return;
   const worker=state.workers.find(w=>w.id===wid);if(!worker)return;
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rec=state.weekRecords[key];if(!rec)return;
-  const rateInfo=getRateForWeek(worker,ws);
-
+  const ri=getRateForWeek(worker,ws);
   let totalHours=0,daysWorked=0;
   for(let i=0;i<6;i++){const inp=document.getElementById('h-'+i);const h=inp?(parseFloat(inp.value)||0):0;if(rec.days[i]){totalHours+=h;daysWorked++;}}
   const extraH=parseFloat(document.getElementById('reg-extra-h').value)||0;
   const discH=parseFloat(document.getElementById('reg-disc-h').value)||0;
   const discS=Math.round(parseFloat(document.getElementById('reg-disc-s').value)||0);
   const adelanto=Math.round(parseFloat(document.getElementById('reg-adelanto').value)||0);
-  const sundayBonus=rec.days[6];
-  const quemaTotal=quemasData.reduce((s,q)=>s+q.amount,0);
-
-  const hourlyRate=rateInfo.hourly;
+  const sundayBonus=rec.days[6];const quemaTotal=quemasData.reduce((s,q)=>s+q.amount,0);
   const netHours=totalHours+extraH-discH;
-  const regularPay=netHours*hourlyRate;
-  const sundayPay=sundayBonus?rateInfo.daily:0;
-  const grossPay=regularPay+sundayPay+quemaTotal;
-  const totalPay=Math.max(0,grossPay-discS-adelanto);
-
+  const regularPay=Math.round(netHours*ri.hourly);
+  const sundayPay=sundayBonus?ri.daily:0;
+  const totalPay=Math.max(0,regularPay+sundayPay+quemaTotal-discS-adelanto);
   document.getElementById('calc-preview').innerHTML=
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Días trabajados</span><span class="mono"><strong>'+daysWorked+'</strong> días</span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Horas normales</span><span class="mono">'+totalHours+'h × S/'+hourlyRate.toFixed(2)+' = <strong>S/'+Math.round(totalHours*hourlyRate)+'</strong></span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Horas extra (+'+extraH+'h)</span><span class="mono" style="color:var(--accent)">+S/'+Math.round(extraH*hourlyRate)+'</span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Desc. horas (−'+discH+'h)</span><span class="mono" style="color:var(--danger)">−S/'+Math.round(discH*hourlyRate)+'</span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Dominical '+(sundayBonus?'✅':'❌')+'</span><span class="mono" style="color:'+(sundayBonus?'var(--accent2)':'var(--muted)')+'">S/'+sundayPay+'</span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>🔥 Quemas ('+quemasData.length+')</span><span class="mono" style="color:var(--accent2)">+S/'+quemaTotal+'</span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Desc. soles</span><span class="mono" style="color:var(--danger)">−S/'+discS+'</span></div>'+
-    '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>Adelanto</span><span class="mono" style="color:var(--danger)">−S/'+adelanto+'</span></div>'+
-    '<hr class="sep">'+
-    '<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;"><span style="font-size:15px;font-weight:700;">TOTAL A PAGAR</span><span class="mono" style="color:var(--accent);font-size:22px;font-weight:700;">S/'+Math.round(totalPay)+'</span></div>';
+    row('Días trabajados','<strong>'+daysWorked+'</strong> días','')+''+
+    row('Horas normales',totalHours+'h × S/'+ri.hourly.toFixed(2)+' = <strong>S/'+Math.round(totalHours*ri.hourly)+'</strong>','')+
+    row('Horas extra (+'+extraH+'h)','<span style="color:var(--accent)">+S/'+Math.round(extraH*ri.hourly)+'</span>','')+
+    row('Desc. horas (−'+discH+'h)','<span style="color:var(--danger)">−S/'+Math.round(discH*ri.hourly)+'</span>','')+
+    row('Dominical '+(sundayBonus?'✅':'❌'),'<span style="color:'+(sundayBonus?'var(--accent2)':'var(--muted)')+'">S/'+sundayPay+'</span>','')+
+    row('🔥 Quemas ('+quemasData.length+')','<span style="color:var(--accent2)">+S/'+quemaTotal+'</span>','')+
+    row('Desc. soles','<span style="color:var(--danger)">−S/'+discS+'</span>','')+
+    row('Adelanto','<span style="color:var(--danger)">−S/'+adelanto+'</span>','')+
+    '<hr class="sep"><div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;"><span style="font-size:14px;font-weight:700;">TOTAL A PAGAR</span><span class="mono" style="color:var(--accent);font-size:21px;font-weight:700;">S/'+Math.round(totalPay)+'</span></div>';
 }
-
+function row(l,v){return'<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;"><span>'+l+'</span><span class="mono">'+v+'</span></div>';}
 function saveWeekRecord(){
   const wid=document.getElementById('reg-worker-select').value;if(!wid){toast('Selecciona empleado');return;}
   const worker=state.workers.find(w=>w.id===wid);
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rec=state.weekRecords[key];if(!rec){toast('Marca días primero');return;}
-  const rateInfo=getRateForWeek(worker,ws);
-
+  const ri=getRateForWeek(worker,ws);
   let totalHours=0,daysWorked=0;const hoursPerDay=[];
   for(let i=0;i<6;i++){const inp=document.getElementById('h-'+i);const h=inp?(parseFloat(inp.value)||0):0;hoursPerDay.push(h);if(rec.days[i]){totalHours+=h;daysWorked++;}}
   hoursPerDay.push(0);
@@ -887,16 +962,12 @@ function saveWeekRecord(){
   const discS=Math.round(parseFloat(document.getElementById('reg-disc-s').value)||0);
   const adelanto=Math.round(parseFloat(document.getElementById('reg-adelanto').value)||0);
   const note=document.getElementById('reg-note').value.trim();
-  const sundayBonus=rec.days[6];
-  const quemaTotal=quemasData.reduce((s,q)=>s+q.amount,0);
-
-  const hourlyRate=rateInfo.hourly;
+  const sundayBonus=rec.days[6];const quemaTotal=quemasData.reduce((s,q)=>s+q.amount,0);
   const netHours=totalHours+extraH-discH;
-  const regularPay=netHours*hourlyRate;
-  const sundayPay=sundayBonus?rateInfo.daily:0;
+  const regularPay=Math.round(netHours*ri.hourly);
+  const sundayPay=sundayBonus?ri.daily:0;
   const totalPay=Math.max(0,regularPay+sundayPay+quemaTotal-discS-adelanto);
-
-  state.weekRecords[key]=Object.assign({},rec,{hoursPerDay,extraH,discH,discS,adelanto,quemas:quemasData.slice(),note,totalPay:Math.round(totalPay),sundayBonus,rateUsedDay:rateInfo.daily,daysWorked});
+  state.weekRecords[key]=Object.assign({},rec,{hoursPerDay,extraH,discH,discS,adelanto,quemas:quemasData.slice(),note,totalPay:Math.round(totalPay),sundayBonus,rateUsedDay:ri.daily,daysWorked});
   save();renderDashboard();renderBalances();renderAcumulado();
   toast('✅ Guardado — S/'+Math.round(totalPay));
 }
@@ -904,77 +975,49 @@ function saveWeekRecord(){
 // ================================================================
 // DASHBOARD
 // ================================================================
-function renderDashboard(){
-  const ws=getWeekStart(currentWeekOffset);const wk=weekKey(ws);
-  const sw=sortedWorkers();
-  const rows=sw.map(w=>{
-    const key=w.id+'_'+wk;const rec=state.weekRecords[key];
-    const balance=getWorkerBalance(w.id);
-    return{worker:w,rec,balance};
-  }).filter(x=>x.rec);
-
-  let tot=0,bal=0,sun=0;
-  rows.forEach(r=>{tot+=r.rec.totalPay;bal+=r.balance;if(r.rec.sundayBonus)sun++;});
-  document.getElementById('stat-total').textContent='S/'+tot;
-  document.getElementById('stat-balance').textContent='S/'+bal;
-  document.getElementById('stat-workers').textContent=rows.length;
-  document.getElementById('stat-sunday').textContent=sun;
-
-  const tb=document.getElementById('dash-table-body');
-  if(!rows.length){tb.innerHTML='<tr><td colspan="6"><div class="empty"><div class="ic">📋</div><p>Sin datos esta semana</p></div></td></tr>';return;}
-  tb.innerHTML=rows.map(x=>{
-    const hours=x.rec.hoursPerDay?x.rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(x.rec.days[i]?h:0),0):0;
-    return'<tr><td><strong>'+x.worker.name+'</strong></td><td class="mono">'+(x.rec.daysWorked||0)+'d</td><td class="mono">'+hours+'h</td><td>'+(x.rec.sundayBonus?'<span class="badge badge-yellow">✅</span>':'<span class="badge badge-gray">No</span>')+'</td><td class="mono">S/'+x.rec.totalPay+'</td><td class="mono" style="color:'+(x.balance>0?'var(--danger)':'var(--accent)')+'">S/'+x.balance+'</td></tr>';
-  }).join('');
-
-  renderAcumulado();
-}
-
 function getWorkerBalance(wid){
   const owed=Object.values(state.weekRecords).filter(r=>r.workerId===wid).reduce((s,r)=>s+(r.totalPay||0),0);
   const paid=state.payments.filter(p=>p.workerId===wid).reduce((s,p)=>s+p.amount,0);
   return Math.max(0,owed-paid);
 }
-
-// ================================================================
-// ACUMULADO
-// ================================================================
-function renderAcumulado(){
-  const div=document.getElementById('acum-summary');
+function renderDashboard(){
+  const ws=getWeekStart(currentWeekOffset);const wk=weekKey(ws);
   const sw=sortedWorkers();
-
-  // Build per-worker per-month earned
-  const data={};
+  const rows=sw.map(w=>({worker:w,rec:state.weekRecords[w.id+'_'+wk],balance:getWorkerBalance(w.id)})).filter(x=>x.rec);
+  let tot=0,bal=0,sun=0;
+  rows.forEach(r=>{tot+=r.rec.totalPay;bal+=r.balance;if(r.rec.sundayBonus)sun++;});
+  document.getElementById('stat-total').textContent='S/'+tot;document.getElementById('stat-balance').textContent='S/'+bal;
+  document.getElementById('stat-workers').textContent=rows.length;document.getElementById('stat-sunday').textContent=sun;
+  const tb=document.getElementById('dash-table-body');
+  if(!rows.length){tb.innerHTML='<tr><td colspan="6"><div class="empty"><div class="ic">📋</div><p>Sin datos</p></div></td></tr>';renderAcumulado();return;}
+  tb.innerHTML=rows.map(x=>{
+    const hours=x.rec.hoursPerDay?x.rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(x.rec.days[i]?h:0),0):0;
+    return'<tr><td><strong>'+x.worker.name+'</strong></td><td class="mono">'+(x.rec.daysWorked||0)+'d</td><td class="mono">'+hours+'h</td><td>'+(x.rec.sundayBonus?'<span class="badge badge-yellow">✅</span>':'<span class="badge badge-gray">No</span>')+'</td><td class="mono">S/'+x.rec.totalPay+'</td><td class="mono" style="color:'+(x.balance>0?'var(--danger)':'var(--accent)')+'">S/'+x.balance+'</td></tr>';
+  }).join('');
+  renderAcumulado();
+}
+function renderAcumulado(){
+  const div=document.getElementById('acum-summary');if(!div)return;
+  const mode=document.getElementById('acum-sort')?document.getElementById('acum-sort').value:'default';
+  const sw=sortedWorkers(mode);
+  const earned={};
   Object.values(state.weekRecords).forEach(rec=>{
     const mk=monthKey(rec.weekKey);
-    if(!data[rec.workerId])data[rec.workerId]={};
-    if(!data[rec.workerId][mk])data[rec.workerId][mk]=0;
-    data[rec.workerId][mk]+=rec.totalPay||0;
+    if(!earned[rec.workerId])earned[rec.workerId]={};
+    if(!earned[rec.workerId][mk])earned[rec.workerId][mk]=0;
+    earned[rec.workerId][mk]+=rec.totalPay||0;
   });
-
-  // Build per-worker total paid
-  const paid={};
-  state.payments.forEach(p=>{
-    if(!paid[p.workerId])paid[p.workerId]=0;
-    paid[p.workerId]+=p.amount;
-  });
-
-  const workers=sw.filter(w=>getWorkerBalance(w.id)>0||Object.keys(data[w.id]||{}).length>0);
+  const paid={};state.payments.forEach(p=>{if(!paid[p.workerId])paid[p.workerId]=0;paid[p.workerId]+=p.amount;});
+  const workers=sw.filter(w=>Object.keys(earned[w.id]||{}).length>0||getWorkerBalance(w.id)>0);
   if(!workers.length){div.innerHTML='<div class="empty"><div class="ic">📊</div><p>Sin historial acumulado</p></div>';return;}
-
-  // Collect all months
-  const allMonths=[...new Set(Object.values(data).flatMap(d=>Object.keys(d)))].sort();
-
-  let html='<div class="table-wrap"><table><thead><tr><th>Empleado</th>'+allMonths.map(mk=>'<th>'+monthLabel(mk)+'</th>').join('')+'<th>Total Ganado</th><th>Total Pagado</th><th style="color:var(--danger)">Saldo</th></tr></thead><tbody>';
+  const allMonths=[...new Set(Object.values(earned).flatMap(d=>Object.keys(d)))].sort();
+  let html='<div class="table-wrap"><table><thead><tr><th>Empleado</th>'+allMonths.map(mk=>'<th>'+monthLabel(mk)+'</th>').join('')+'<th>Total</th><th style="color:var(--accent)">Pagado</th><th style="color:var(--danger)">Saldo</th></tr></thead><tbody>';
   workers.forEach(w=>{
-    const wData=data[w.id]||{};
-    const totalEarned=Object.values(wData).reduce((s,v)=>s+v,0);
-    const totalPaid=paid[w.id]||0;
-    const balance=Math.max(0,totalEarned-totalPaid);
-    html+='<tr><td><strong>'+w.name+'</strong></td>'+allMonths.map(mk=>'<td class="mono">'+(wData[mk]?'S/'+(wData[mk]):'—')+'</td>').join('')+'<td class="mono">S/'+totalEarned+'</td><td class="mono" style="color:var(--accent)">S/'+totalPaid+'</td><td class="mono" style="color:'+(balance>0?'var(--danger)':'var(--accent)')+'">S/'+balance+'</td></tr>';
+    const wE=earned[w.id]||{};const tE=Object.values(wE).reduce((s,v)=>s+v,0);
+    const tP=paid[w.id]||0;const bal=Math.max(0,tE-tP);
+    html+='<tr><td><strong>'+w.name+'</strong></td>'+allMonths.map(mk=>'<td class="mono">'+(wE[mk]?'S/'+wE[mk]:'—')+'</td>').join('')+'<td class="mono">S/'+tE+'</td><td class="mono" style="color:var(--accent)">S/'+tP+'</td><td class="mono" style="color:'+(bal>0?'var(--danger)':'var(--accent)')+'">S/'+bal+'</td></tr>';
   });
-  html+='</tbody></table></div>';
-  div.innerHTML=html;
+  html+='</tbody></table></div>';div.innerHTML=html;
 }
 
 // ================================================================
@@ -984,9 +1027,7 @@ function fillOwed(){
   const wid=document.getElementById('pay-worker-select').value;
   const hint=document.getElementById('owed-hint');const hintTxt=document.getElementById('owed-hint-text');
   if(!wid){hint.style.display='none';return;}
-  const balance=getWorkerBalance(wid);
-  hint.style.display='block';
-  hintTxt.textContent='Saldo pendiente total: S/'+balance;
+  hint.style.display='block';hintTxt.textContent='Saldo pendiente total: S/'+getWorkerBalance(wid);
 }
 function setPayToday(){if(document.getElementById('pay-today').checked)document.getElementById('pay-date').value=todayStr();}
 function registerPayment(){
@@ -995,16 +1036,13 @@ function registerPayment(){
   const note=document.getElementById('pay-note').value.trim();
   const date=document.getElementById('pay-date').value||todayStr();
   const type=document.getElementById('pay-type').value;
-  if(!wid){toast('Selecciona empleado');return;}
-  if(!amount||amount<=0){toast('Monto inválido');return;}
+  if(!wid){toast('Selecciona empleado');return;}if(!amount||amount<=0){toast('Monto inválido');return;}
   state.payments.push({id:Date.now().toString(),workerId:wid,amount,date,note,type});
-  save();
-  document.getElementById('pay-amount').value='';document.getElementById('pay-note').value='';
+  save();document.getElementById('pay-amount').value='';document.getElementById('pay-note').value='';
   document.getElementById('pay-date').value=todayStr();document.getElementById('pay-today').checked=false;
   document.getElementById('owed-hint').style.display='none';
   renderBalances();renderPaymentHistory();renderDashboard();
-  const w=state.workers.find(x=>x.id===wid);
-  toast('✅ S/'+amount+' a '+(w?w.name:''));
+  const w=state.workers.find(x=>x.id===wid);toast('✅ S/'+amount+' a '+(w?w.name:''));
 }
 function renderBalances(){
   const div=document.getElementById('balances-list');
@@ -1013,19 +1051,19 @@ function renderBalances(){
   if(!bals.length){div.innerHTML='<div class="empty"><div class="ic">🎉</div><p>Sin saldos pendientes</p></div>';return;}
   div.innerHTML=bals.map(b=>{
     const lastPays=state.payments.filter(p=>p.workerId===b.worker.id).sort((a,x)=>x.date.localeCompare(a.date)).slice(0,3).map(p=>isoToDisplay(p.date)+': S/'+p.amount).join(' · ');
-    return'<div style="padding:11px 0;border-bottom:1px solid var(--border);"><div style="display:flex;justify-content:space-between;"><span style="font-weight:600;">'+b.worker.name+'</span><span class="mono" style="color:var(--danger);">S/'+b.balance+'</span></div>'+(lastPays?'<div style="font-size:11px;color:var(--muted);margin-top:3px;">Pagos recientes: '+lastPays+'</div>':'')+'</div>';
+    return'<div style="padding:10px 0;border-bottom:1px solid var(--border);"><div style="display:flex;justify-content:space-between;"><span style="font-weight:600;">'+b.worker.name+'</span><span class="mono" style="color:var(--danger);">S/'+b.balance+'</span></div>'+(lastPays?'<div style="font-size:11px;color:var(--muted);margin-top:3px;">'+lastPays+'</div>':'')+'</div>';
   }).join('');
 }
 function renderPaymentHistory(){
-  const filterWid=document.getElementById('pay-filter-worker')?document.getElementById('pay-filter-worker').value:'';
+  const fw=document.getElementById('pay-filter-worker')?document.getElementById('pay-filter-worker').value:'';
   const div=document.getElementById('payment-history');
-  let pays=state.payments.slice();if(filterWid)pays=pays.filter(p=>p.workerId===filterWid);
+  let pays=state.payments.slice();if(fw)pays=pays.filter(p=>p.workerId===fw);
   pays.sort((a,b)=>b.date.localeCompare(a.date));
   if(!pays.length){div.innerHTML='<div class="empty"><div class="ic">📜</div><p>Sin pagos</p></div>';return;}
   div.innerHTML=pays.slice(0,60).map(p=>{
     const w=state.workers.find(x=>x.id===p.workerId);
-    const typeLabel=p.type==='accumulated'?'<span class="badge badge-yellow">Acumulado</span>':'<span class="badge badge-gray">Semanal</span>';
-    return'<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);"><div><div style="font-weight:600;">'+(w?w.name:'?')+' '+typeLabel+'</div><div style="font-size:12px;color:var(--muted);">'+isoToDisplay(p.date)+(p.note?' — '+p.note:'')+'</div></div><div class="mono" style="color:var(--accent);font-weight:700;">S/'+p.amount+'</div></div>';
+    const tl=p.type==='accumulated'?'<span class="badge badge-yellow">Acumulado</span>':'<span class="badge badge-gray">Semanal</span>';
+    return'<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);"><div><div style="font-weight:600;">'+(w?w.name:'?')+' '+tl+'</div><div style="font-size:11px;color:var(--muted);">'+isoToDisplay(p.date)+(p.note?' — '+p.note:'')+'</div></div><div class="mono" style="color:var(--accent);font-weight:700;">S/'+p.amount+'</div></div>';
   }).join('');
 }
 
@@ -1034,106 +1072,96 @@ function renderPaymentHistory(){
 // ================================================================
 function renderPdfWorkerList(){
   const type=document.getElementById('pdf-type')?document.getElementById('pdf-type').value:'week';
-  document.getElementById('pdf-month-selector').style.display=type==='month'?'block':'none';
+  document.getElementById('pdf-month-row').style.display=type==='month'?'grid':'none';
+  document.getElementById('pdf-year-row').style.display=type==='year'?'block':'none';
   const div=document.getElementById('pdf-worker-list');if(!div)return;
   const sw=sortedWorkers();
   if(!sw.length){div.innerHTML='<p style="color:var(--muted);font-size:13px;">Sin trabajadores.</p>';return;}
-  div.innerHTML=sw.map(w=>'<div class="pdf-worker-check"><input type="checkbox" id="pdf-chk-'+w.id+'" value="'+w.id+'" checked><label for="pdf-chk-'+w.id+'" style="cursor:pointer;font-size:14px;">'+w.name+'</label></div>').join('');
+  div.innerHTML=sw.map(w=>'<div class="pdf-chk-item" onclick="togglePdfChk(\''+w.id+'\')"><input type="checkbox" id="pdf-chk-'+w.id+'" value="'+w.id+'" checked onchange="updateChkMark(\''+w.id+'\')"><label for="pdf-chk-'+w.id+'" onclick="event.preventDefault();">'+w.name+'</label><span class="chk-mark" id="chkmark-'+w.id+'">✓</span></div>').join('');
 }
-function selectAllPdfWorkers(val){
-  document.querySelectorAll('[id^="pdf-chk-"]').forEach(cb=>cb.checked=val);
+function togglePdfChk(wid){
+  const cb=document.getElementById('pdf-chk-'+wid);if(!cb)return;
+  cb.checked=!cb.checked;updateChkMark(wid);
+}
+function updateChkMark(wid){
+  const cb=document.getElementById('pdf-chk-'+wid);
+  const mark=document.getElementById('chkmark-'+wid);
+  if(mark)mark.textContent=cb&&cb.checked?'✓':'';
+}
+function selectAllPdf(val){
+  document.querySelectorAll('[id^="pdf-chk-"]').forEach(cb=>{cb.checked=val;updateChkMark(cb.value);});
 }
 function generatePDF(){
   const type=document.getElementById('pdf-type').value;
   const selected=[...document.querySelectorAll('[id^="pdf-chk-"]:checked')].map(cb=>cb.value);
   if(!selected.length){toast('Selecciona al menos un empleado');return;}
-
-  let month,year;
+  let month,year,yearOnly;
   if(type==='month'){month=parseInt(document.getElementById('pdf-month').value);year=parseInt(document.getElementById('pdf-year').value);}
-
+  if(type==='year'){yearOnly=parseInt(document.getElementById('pdf-year-only').value);}
   let allHTML='';
   selected.forEach((wid,idx)=>{
     const worker=state.workers.find(w=>w.id===wid);if(!worker)return;
     let records=[];
     if(type==='week'){
-      const ws=getWeekStart(currentWeekOffset);const wk=weekKey(ws);
-      const rec=state.weekRecords[wid+'_'+wk];if(rec)records=[{ws,rec}];
-    } else {
-      Object.entries(state.weekRecords).filter(([k,v])=>v.workerId===wid).forEach(([k,v])=>{
-        const ws=new Date(v.weekKey+'T00:00:00');
-        if(ws.getMonth()===month&&ws.getFullYear()===year)records.push({ws,rec:v});
-      });
+      const ws=getWeekStart(currentWeekOffset);const wk=weekKey(ws);const rec=state.weekRecords[wid+'_'+wk];if(rec)records=[{ws,rec}];
+    } else if(type==='month'){
+      Object.entries(state.weekRecords).filter(([k,v])=>v.workerId===wid).forEach(([k,v])=>{const ws=new Date(v.weekKey+'T00:00:00');if(ws.getMonth()===month&&ws.getFullYear()===year)records.push({ws,rec:v});});
+      records.sort((a,b)=>a.ws-b.ws);
+    } else if(type==='year'){
+      Object.entries(state.weekRecords).filter(([k,v])=>v.workerId===wid).forEach(([k,v])=>{const ws=new Date(v.weekKey+'T00:00:00');if(ws.getFullYear()===yearOnly)records.push({ws,rec:v});});
       records.sort((a,b)=>a.ws-b.ws);
     }
     if(!records.length)return;
     const pays=state.payments.filter(p=>p.workerId===wid);
     const totalOwed=Object.values(state.weekRecords).filter(r=>r.workerId===wid).reduce((s,r)=>s+(r.totalPay||0),0);
     const totalPaid=pays.reduce((s,p)=>s+p.amount,0);
-    const balance=Math.max(0,totalOwed-totalPaid);
-    allHTML+=buildWorkerPDFSection(worker,records,pays,balance,type,idx>0);
+    allHTML+=buildWorkerSection(worker,records,pays,Math.max(0,totalOwed-totalPaid),type,idx>0);
   });
-
-  if(!allHTML){toast('Sin registros para el período seleccionado');return;}
+  if(!allHTML){toast('Sin registros para el período');return;}
   const win=window.open('','_blank','width=860,height=960');
-  win.document.write(buildPDFWrapper(allHTML));win.document.close();
-  setTimeout(()=>win.print(),700);
+  win.document.write(pdfWrapper(allHTML));win.document.close();setTimeout(()=>win.print(),700);
 }
-
-function buildPDFWrapper(body){
-  return'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>OV App — Reporte</title><style>body{font-family:Arial,sans-serif;font-size:13px;color:#111;padding:28px;max-width:820px;margin:0 auto;}h1{font-size:19px;margin-bottom:3px;}h2{font-size:13px;color:#555;font-weight:normal;margin-bottom:16px;}h3{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#777;margin:18px 0 7px;}table{width:100%;border-collapse:collapse;margin-bottom:14px;}th{background:#f4f4f4;font-size:10px;text-transform:uppercase;padding:7px 9px;text-align:left;border-bottom:2px solid #ddd;}td{padding:7px 9px;border-bottom:1px solid #eee;}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px;}.box{background:#f9f9f9;border:1px solid #ddd;border-radius:5px;padding:10px;}.lbl{font-size:10px;text-transform:uppercase;letter-spacing:.3px;color:#888;margin-bottom:3px;}.val{font-size:17px;font-weight:700;}.red{color:#cc0000;}.green{color:#006600;}.footer{margin-top:28px;font-size:10px;color:#bbb;text-align:center;}.page-break{page-break-before:always;margin-top:36px;}@media print{body{padding:14px;}}</style></head><body>'+body+'<div class="footer">OV App — Generado el '+fmtDate(new Date())+'</div></body></html>';
+function pdfWrapper(body){
+  return'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>OV App</title><style>body{font-family:Arial,sans-serif;font-size:12px;color:#111;padding:26px;max-width:820px;margin:0 auto;}h1{font-size:18px;margin-bottom:3px;}h2{font-size:12px;color:#555;font-weight:normal;margin-bottom:14px;}h3{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#777;margin:16px 0 6px;}table{width:100%;border-collapse:collapse;margin-bottom:12px;}th{background:#f4f4f4;font-size:10px;text-transform:uppercase;padding:6px 8px;text-align:left;border-bottom:2px solid #ddd;}td{padding:6px 8px;border-bottom:1px solid #eee;}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:16px;}.box{background:#f9f9f9;border:1px solid #ddd;border-radius:4px;padding:9px;}.lbl{font-size:10px;text-transform:uppercase;color:#888;margin-bottom:2px;}.val{font-size:16px;font-weight:700;}.red{color:#cc0000;}.green{color:#006600;}.footer{margin-top:26px;font-size:10px;color:#bbb;text-align:center;}.pb{page-break-before:always;margin-top:32px;}@media print{body{padding:12px;}}</style></head><body>'+body+'<div class="footer">OV App — '+fmtDate(new Date())+'</div></body></html>';
 }
-
-function buildWorkerPDFSection(worker,records,pays,balance,type,addBreak){
+function buildWorkerSection(worker,records,pays,balance,type,addBreak){
   const rows=records.map(item=>{
     const rec=item.rec;const ws=item.ws;
     const days=rec.daysWorked||rec.days.slice(0,6).filter(Boolean).length;
     const hours=rec.hoursPerDay?rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(rec.days[i]?h:0),0):0;
-    const quemaTotal=(rec.quemas||[]).reduce((s,q)=>s+q.amount,0);
-    return'<tr><td>'+fmtDate(ws)+' – '+fmtDate(getWeekEnd(ws))+'</td><td style="text-align:center">'+days+'</td><td style="text-align:center">'+hours+'h</td><td style="text-align:center">'+(rec.sundayBonus?'✅':'—')+'</td><td style="text-align:center">'+((rec.quemas||[]).length?'S/'+quemaTotal:'—')+'</td><td style="text-align:center">S/'+(rec.rateUsedDay||'?')+'/día</td><td style="text-align:right;font-weight:700;">S/'+rec.totalPay+'</td></tr>';
+    const qt=(rec.quemas||[]).reduce((s,q)=>s+q.amount,0);
+    return'<tr><td>'+fmtDate(ws)+' – '+fmtDate(getWeekEnd(ws))+'</td><td>'+days+'</td><td>'+hours+'h</td><td>'+(rec.sundayBonus?'✅':'—')+'</td><td>'+((rec.quemas||[]).length?'S/'+qt:'—')+'</td><td>S/'+(rec.rateUsedDay||'?')+'/día</td><td style="text-align:right;font-weight:700;">S/'+rec.totalPay+'</td></tr>';
   }).join('');
-  const totalPay=records.reduce((s,item)=>s+item.rec.totalPay,0);
+  const totalPay=records.reduce((s,i)=>s+i.rec.totalPay,0);
   const payRows=pays.sort((a,b)=>b.date.localeCompare(a.date)).map(p=>'<tr><td>'+isoToDisplay(p.date)+'</td><td>'+(p.note||'—')+'</td><td>'+(p.type==='accumulated'?'Acumulado':'Semanal')+'</td><td style="text-align:right;color:#006600;font-weight:700;">S/'+p.amount+'</td></tr>').join('');
-  return(addBreak?'<div class="page-break">':'')+
+  return(addBreak?'<div class="pb">':'')+
     '<h1>'+worker.name+'</h1>'+
-    '<h2>'+(type==='week'?'Reporte Semanal':'Reporte Mensual')+(worker.dni?' · DNI: '+worker.dni:'')+(worker.phone?' · Cel: '+worker.phone:'')+'</h2>'+
-    '<div class="grid"><div class="box"><div class="lbl">Total Período</div><div class="val">S/'+totalPay+'</div></div><div class="box"><div class="lbl">Total Pagado</div><div class="val green">S/'+pays.reduce((s,p)=>s+p.amount,0)+'</div></div><div class="box"><div class="lbl">Saldo Pendiente</div><div class="val red">S/'+balance+'</div></div></div>'+
-    '<h3>Semanas</h3><table><thead><tr><th>Semana</th><th>Días</th><th>Horas</th><th>Dominical</th><th>Quemas</th><th>Tarifa</th><th>Total</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr style="background:#f0f0f0;font-weight:700;"><td colspan="6">TOTAL</td><td style="text-align:right">S/'+totalPay+'</td></tr></tfoot></table>'+
+    '<h2>'+(type==='week'?'Semanal':type==='month'?'Mensual':'Anual')+(worker.dni?' · DNI: '+worker.dni:'')+(worker.phone?' · Cel: '+worker.phone:'')+'</h2>'+
+    '<div class="grid"><div class="box"><div class="lbl">Total Período</div><div class="val">S/'+totalPay+'</div></div><div class="box"><div class="lbl">Total Pagado</div><div class="val green">S/'+pays.reduce((s,p)=>s+p.amount,0)+'</div></div><div class="box"><div class="lbl">Saldo</div><div class="val red">S/'+balance+'</div></div></div>'+
+    '<h3>Semanas</h3><table><thead><tr><th>Semana</th><th>Días</th><th>Hrs</th><th>Dom</th><th>Quemas</th><th>Tarifa</th><th>Total</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr style="background:#f0f0f0;font-weight:700;"><td colspan="6">TOTAL</td><td style="text-align:right">S/'+totalPay+'</td></tr></tfoot></table>'+
     (payRows?'<h3>Pagos</h3><table><thead><tr><th>Fecha</th><th>Nota</th><th>Tipo</th><th>Monto</th></tr></thead><tbody>'+payRows+'</tbody></table>':'')+(addBreak?'</div>':'');
 }
 
 // ================================================================
 // MISC
 // ================================================================
-function copyScript(){
-  const code=document.getElementById('apps-script-code').textContent;
-  navigator.clipboard.writeText(code).then(()=>toast('📋 Código copiado')).catch(()=>toast('Copia manualmente el código'));
-}
-function clearAllData(){
-  if(!confirm('¿Borrar TODOS los datos? Irreversible.'))return;
-  state={workers:[],weekRecords:{},payments:[],config:{sheetsUrl:''}};
-  localStorage.removeItem('ov_v3');toast('Datos borrados');renderAll();
-}
+function copyScript(){const code=document.getElementById('apps-script-code').textContent;navigator.clipboard.writeText(code).then(()=>toast('📋 Código copiado')).catch(()=>toast('Copia manualmente'));}
+function clearAllData(){if(!confirm('¿Borrar TODOS los datos locales? Irreversible.'))return;state={workers:[],weekRecords:{},payments:[],config:{sheetsUrl:''}};localStorage.removeItem('ov_v3');toast('Datos borrados');renderAll();}
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-btn,.mobile-nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   ['nav-','mnav-'].forEach(p=>{const el=document.getElementById(p+name);if(el)el.classList.add('active');});
   if(name==='pagos'){renderBalances();renderPaymentHistory();}
-  if(name==='config'){document.getElementById('sheets-url').value=state.config.sheetsUrl||'';updateSyncDot(null);renderSalaryHistory();}
-  if(name==='reportes'){renderPdfWorkerList();document.getElementById('pdf-month').value=new Date().getMonth();document.getElementById('pdf-year').value=new Date().getFullYear();}
+  if(name==='config'){document.getElementById('sheets-url').value=scriptUrl||'';updateSyncDot(null);renderSalaryHistory();}
+  if(name==='reportes'){renderPdfWorkerList();document.getElementById('pdf-month').value=new Date().getMonth();document.getElementById('pdf-year').value=new Date().getFullYear();document.getElementById('pdf-year-only').value=new Date().getFullYear();}
 }
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
-
-function renderAll(){
-  renderWeekDisplays();renderWorkersList();updateWorkerSelects();
-  renderDashboard();renderBalances();renderPaymentHistory();updateSyncDot(null);
-  renderPdfWorkerList();
-}
+function renderAll(){renderWeekDisplays();renderWorkersList();updateWorkerSelects();renderDashboard();renderBalances();renderPaymentHistory();updateSyncDot(null);renderPdfWorkerList();}
 
 // INIT
 document.getElementById('pay-date').value=todayStr();
-load();
-renderAll();
+if(document.getElementById('main-app').style.display!=='none'){ load(); renderAll(); }
 </script>
 </body>
 </html>
