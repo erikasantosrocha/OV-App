@@ -459,57 +459,47 @@ select option{background:#222;}
         <div class="step-item"><span class="step-badge">2</span><div><strong>Extensiones → Apps Script</strong>. Borra el código y pega el de abajo (incluye la clave).</div></div>
         <div class="config-info" id="apps-script-code" onclick="copyScript()">// =============================================
 // OV APP — APPS SCRIPT BACKEND
-// Cambia APP_PASSWORD por tu clave real
+// PASO 1: Cambia la clave en la línea de abajo
 // =============================================
-var APP_PASSWORD = "ovladrillera2024";
+var APP_PASSWORD = "tu_clave_aqui";
 
+// CORS helper — required for browser requests
+function corsResponse(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// GET — lee datos (login + carga)
+function doGet(e) {
+  var pass = e.parameter.password;
+  if (pass !== APP_PASSWORD) {
+    return corsResponse({ok: false, error: "unauthorized"});
+  }
+  // Special action: just verify password
+  if (e.parameter.action === "ping") {
+    return corsResponse({ok: true});
+  }
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheetName = e.parameter.sheet;
+  var sheet = ss.getSheetByName(sheetName);
+  if (!sheet) return corsResponse({rows: []});
+  return corsResponse({rows: sheet.getDataRange().getValues()});
+}
+
+// POST — escribe datos
 function doPost(e) {
   var data = JSON.parse(e.postData.contents);
-
-  // Verify password on all write operations
   if (data.password !== APP_PASSWORD) {
-    return ContentService.createTextOutput(JSON.stringify({ok:false, error:"unauthorized"}))
-      .setMimeType(ContentService.MimeType.JSON);
+    return corsResponse({ok: false, error: "unauthorized"});
   }
-
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(data.sheet) || ss.insertSheet(data.sheet);
-  if (data.action === 'replace_all') {
+  if (data.action === "replace_all") {
     sheet.clearContents();
     sheet.appendRow(data.headers);
-    data.rows.forEach(function(r){ sheet.appendRow(r); });
+    data.rows.forEach(function(r) { sheet.appendRow(r); });
   }
-  return ContentService.createTextOutput(JSON.stringify({ok:true}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-function doGet(e) {
-  // Verify password on all read operations
-  if (e.parameter.password !== APP_PASSWORD) {
-    return ContentService.createTextOutput(JSON.stringify({ok:false, error:"unauthorized"}))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName(e.parameter.sheet);
-  if (!sheet) return ContentService.createTextOutput(JSON.stringify({rows:[]}))
-    .setMimeType(ContentService.MimeType.JSON);
-  return ContentService.createTextOutput(JSON.stringify({rows:sheet.getDataRange().getValues()}))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-// Password change endpoint
-function doPost_changepass(e) {
-  var data = JSON.parse(e.postData.contents);
-  if (data.action !== 'change_password') return;
-  if (data.old_password !== APP_PASSWORD) {
-    return ContentService.createTextOutput(JSON.stringify({ok:false,error:"wrong_password"}))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-  // Store new password in Script Properties (persistent)
-  PropertiesService.getScriptProperties().setProperty('APP_PASSWORD', data.new_password);
-  return ContentService.createTextOutput(JSON.stringify({ok:true}))
-    .setMimeType(ContentService.MimeType.JSON);
+  return corsResponse({ok: true});
 }</div>
         <button class="btn btn-secondary btn-sm" onclick="copyScript()" style="margin-top:7px;">📋 Copiar código</button>
         <hr class="sep">
@@ -550,39 +540,60 @@ async function doLogin(){
   if(urlInput) { scriptUrl = urlInput; localStorage.setItem('ov_script_url', scriptUrl); }
 
   if(!scriptUrl){
-    document.getElementById('login-err').textContent = 'Configura primero la URL de Apps Script (⚙️ abajo)';
+    document.getElementById('login-err').textContent = '⚙️ Primero ingresa la URL de tu Apps Script';
     document.getElementById('login-script-url').style.display = 'block';
     return;
   }
   if(!pass){ document.getElementById('login-err').textContent = 'Ingresa la clave'; return; }
 
-  document.getElementById('login-spinner').style.display = 'block';
-  document.getElementById('login-err').textContent = '';
+  const spinner = document.getElementById('login-spinner');
+  const errDiv = document.getElementById('login-err');
+  spinner.style.display = 'block';
+  errDiv.textContent = '';
 
   try {
-    const res = await fetch(scriptUrl + '?sheet=Trabajadores&password=' + encodeURIComponent(pass));
-    const data = await res.json();
+    // Use the ping action to verify password only
+    const url = scriptUrl + '?action=ping&password=' + encodeURIComponent(pass);
+    const res = await fetch(url);
+    const text = await res.text();
+    let data;
+    try { data = JSON.parse(text); } catch(e){ data = {}; }
+
     if(data.error === 'unauthorized'){
-      document.getElementById('login-err').textContent = 'Clave incorrecta';
+      errDiv.textContent = '❌ Clave incorrecta';
       document.getElementById('login-input').value = '';
-    } else {
+    } else if(data.ok === true){
       localStorage.setItem('ov_session_pass', pass);
+      spinner.style.display = 'none';
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('main-app').style.display = 'flex';
       loadFromSheets();
+      return;
+    } else {
+      // Unexpected response — try treating as success if no error field
+      if(!data.error){
+        localStorage.setItem('ov_session_pass', pass);
+        spinner.style.display = 'none';
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('main-app').style.display = 'flex';
+        loadFromSheets();
+        return;
+      }
+      errDiv.textContent = '❌ Respuesta inesperada del servidor';
     }
   } catch(e){
-    // If Sheets unreachable, fall back to local session if previously authed
+    // Network error — allow offline login if previously authenticated with same pass
     const saved = localStorage.getItem('ov_session_pass');
     if(saved && saved === pass){
+      spinner.style.display = 'none';
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('main-app').style.display = 'flex';
       load(); renderAll();
-    } else {
-      document.getElementById('login-err').textContent = 'No se pudo conectar. Verifica la URL y tu conexión.';
+      return;
     }
+    errDiv.textContent = '❌ Error de red. Si ya usaste la app antes, verifica que la clave sea la misma y reintenta.';
   }
-  document.getElementById('login-spinner').style.display = 'none';
+  spinner.style.display = 'none';
 }
 
 function getSessionPass(){ return localStorage.getItem('ov_session_pass') || ''; }
@@ -594,12 +605,24 @@ function doLogout(){
   document.getElementById('login-input').value = '';
   document.getElementById('login-err').textContent = '';
 }
-
+async function verifyPassword(pass){
+  if(!scriptUrl) return false;
+  try{
+    const r = await fetch(
+      scriptUrl + '?action=test&password=' + encodeURIComponent(pass)
+    );
+    const d = await r.json();
+    return d.ok === true;
+  }catch(e){
+    return false;
+  }
+}
 async function changePassword(){
   const oldP = document.getElementById('cfg-old-pass').value;
   const n1 = document.getElementById('cfg-new-pass').value;
   const n2 = document.getElementById('cfg-new-pass2').value;
-  if(!oldP || oldP !== getSessionPass()){ toast('❌ Clave actual incorrecta'); return; }
+    //if (!oldP || oldP !== getSessionPass()) { toast('❌ Clave actual incorrecta'); return; }
+  if (!(await verifyPassword(oldP))) {toast('❌ Clave actual incorrecta'); return; }
   if(!n1 || n1.length < 4){ toast('La nueva clave debe tener al menos 4 caracteres'); return; }
   if(n1 !== n2){ toast('Las claves nuevas no coinciden'); return; }
   // The password lives in Apps Script — user must update it there manually
@@ -612,7 +635,11 @@ async function changePassword(){
 }
 
 // Auto-login if session exists
-if(localStorage.getItem('ov_session_pass') && localStorage.getItem('ov_script_url')){
+  //if (localStorage.getItem('ov_session_pass') && localStorage.getItem('ov_script_url')) {
+  const pass = localStorage.getItem('ov_session_pass');
+  const url = localStorage.getItem('ov_script_url');
+  const exp = localStorage.getItem('ov_session_exp');
+  if (pass && url && exp && Date.now() < exp) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('main-app').style.display = 'flex';
 }
@@ -707,9 +734,24 @@ async function syncToSheets(){
     const W=[['id','name','dni','phone','hoursPerDay','rateDay','salaryHistory'],...state.workers.map(w=>[w.id,w.name,w.dni||'',w.phone||'',w.hoursPerDay,w.rateDay||0,JSON.stringify(w.salaryHistory)])];
     const R=[['key','workerId','weekKey','days','hoursPerDay','extraH','discH','discS','adelanto','quemas','note','totalPay','sundayBonus','rateUsedDay','daysWorked'],...Object.entries(state.weekRecords).map(([k,v])=>[k,v.workerId,v.weekKey,JSON.stringify(v.days),JSON.stringify(v.hoursPerDay),v.extraH,v.discH,v.discS,v.adelanto||0,JSON.stringify(v.quemas||[]),v.note,v.totalPay,v.sundayBonus,v.rateUsedDay||0,v.daysWorked||0])];
     const P=[['id','workerId','amount','date','note','type'],...state.payments.map(p=>[p.id,p.workerId,p.amount,p.date,p.note,p.type||'weekly'])];
-    for(const [sn,data] of [['Trabajadores',W],['Registros',R],['Pagos',P]]){
-      await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'replace_all',sheet:sn,headers:data[0],rows:data.slice(1),password:pass})});
-    }
+//    for(const [sn,data] of [['Trabajadores',W],['Registros',R],['Pagos',P]]){
+//      await fetch(scriptUrl,{method:'POST',body:JSON.stringify({action:'replace_all',sheet:sn,headers:data[0],rows:data.slice(1),password:pass})});
+//    }
+    await Promise.all(
+        [['Trabajadores', W], ['Registros', R], ['Pagos', P]]
+            .map(([sn, data]) =>
+                fetch(scriptUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'replace_all',
+                        sheet: sn,
+                        headers: data[0],
+                        rows: data.slice(1),
+                        password: pass
+                    })
+                })
+            )
+    );
     updateSyncDot('ok');
   }catch(e){updateSyncDot('err');}
 }
@@ -933,7 +975,8 @@ function recalcPreview(){
   const adelanto=Math.round(parseFloat(document.getElementById('reg-adelanto').value)||0);
   const sundayBonus=rec.days[6];const quemaTotal=quemasData.reduce((s,q)=>s+q.amount,0);
   const netHours=totalHours+extraH-discH;
-  const regularPay=Math.round(netHours*ri.hourly);
+  //const regularPay = Math.round(netHours * ri.hourly);
+  const regularPay = netHours * ri.hourly;
   const sundayPay=sundayBonus?ri.daily:0;
   const totalPay=Math.max(0,regularPay+sundayPay+quemaTotal-discS-adelanto);
   document.getElementById('calc-preview').innerHTML=
@@ -1165,3 +1208,4 @@ if(document.getElementById('main-app').style.display!=='none'){ load(); renderAl
 </script>
 </body>
 </html>
+
