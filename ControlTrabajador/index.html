@@ -662,7 +662,13 @@ function getWeekStart(offset){
   mon.setDate(mon.getDate()+offset*7); return mon;
 }
 function getWeekEnd(ws){const e=new Date(ws);e.setDate(e.getDate()+6);return e;}
-function weekKey(ws){return ws.toISOString().slice(0,10);}
+function weekKey(ws){
+  const d = new Date(ws);
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const dd = String(d.getDate()).padStart(2,'0');
+  return `${yyyy}-${mm}-${dd}`;
+}
 function fmtDate(d){
   const dd=String(d.getDate()).padStart(2,'0');
   const mm=String(d.getMonth()+1).padStart(2,'0');
@@ -1170,7 +1176,23 @@ function generatePDF(){
     const worker=state.workers.find(w=>w.id===wid);if(!worker)return;
     let records=[];
     if(type==='week'){
-      const ws=getWeekStart(currentWeekOffset);const wk=weekKey(ws);const rec=state.weekRecords[wid+'_'+wk];if(rec)records=[{ws,rec}];
+      const ws=getWeekStart(currentWeekOffset);
+      const wk=weekKey(ws);
+      const rec = state.weekRecords[wid + '_' + wk];
+      // fallback: si no hay en esa semana, toma la más reciente
+      if(rec){
+        records = [{ws, rec}];
+      } else {
+        const all = Object.entries(state.weekRecords)
+          .filter(([k,v]) => v.workerId === wid)
+          .map(([k,v]) => ({ws:new Date(v.weekKey+'T00:00:00'), rec:v}))
+          .sort((a,b)=>b.ws-a.ws);
+    
+        if(all.length){
+          records = [all[0]]; // última semana disponible
+        }
+      }
+    }
     } else if(type==='month'){
       Object.entries(state.weekRecords).filter(([k,v])=>v.workerId===wid).forEach(([k,v])=>{const ws=new Date(v.weekKey+'T00:00:00');if(ws.getMonth()===month&&ws.getFullYear()===year)records.push({ws,rec:v});});
       records.sort((a,b)=>a.ws-b.ws);
