@@ -668,9 +668,30 @@ function fmtDate(d){
   const mm=String(d.getMonth()+1).padStart(2,'0');
   return dd+'/'+mm+'/'+d.getFullYear();
 }
-function isoToDisplay(iso){ if(!iso||iso.length<10)return iso||''; const p=iso.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
+function isoToDisplay(iso){
+  if(!iso) return '';
+
+  // quitar hora si existe
+  iso = iso.split('T')[0];
+
+  // si ya viene con /
+  if(iso.includes('/')) return iso;
+
+  const parts = iso.split('-');
+  if(parts.length !== 3) return iso;
+
+  const [y,m,d] = parts;
+  return `${d}/${m}/${y}`;
+}
+
 function fmtWeek(ws){return fmtDate(ws)+' — '+fmtDate(getWeekEnd(ws));}
-function todayStr(){return new Date().toISOString().slice(0,10);}
+function todayStr(){
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const dd = String(d.getDate()).padStart(2,'0');
+  return `${yyyy}-${mm}-${dd}`;
+}
 const MONTH_NAMES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 function monthLabel(mk){ const p=mk.split('-'); return MONTH_NAMES[parseInt(p[1])-1]+' '+p[0]; }
 function monthKey(dateStr){ return dateStr.slice(0,7); }
@@ -1077,7 +1098,10 @@ function registerPayment(){
   const wid=document.getElementById('pay-worker-select').value;
   const amount=Math.round(parseFloat(document.getElementById('pay-amount').value)||0);
   const note=document.getElementById('pay-note').value.trim();
-  const date=document.getElementById('pay-date').value||todayStr();
+  //const date=document.getElementById('pay-date').value||todayStr();
+  let date = document.getElementById('pay-date').value || todayStr();
+  // limpiar cualquier formato raro
+  date = date.split('T')[0];
   const type=document.getElementById('pay-type').value;
   if(!wid){toast('Selecciona empleado');return;}if(!amount||amount<=0){toast('Monto inválido');return;}
   state.payments.push({id:Date.now().toString(),workerId:wid,amount,date,note,type});
