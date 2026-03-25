@@ -1214,28 +1214,12 @@ function pdfWrapper(body){
   return'<!DOCTYPE html><html><head><meta charset="UTF-8"><title>OV App</title><style>body{font-family:Arial,sans-serif;font-size:12px;color:#111;padding:26px;max-width:820px;margin:0 auto;}h1{font-size:18px;margin-bottom:3px;}h2{font-size:12px;color:#555;font-weight:normal;margin-bottom:14px;}h3{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#777;margin:16px 0 6px;}table{width:100%;border-collapse:collapse;margin-bottom:12px;}th{background:#f4f4f4;font-size:10px;text-transform:uppercase;padding:6px 8px;text-align:left;border-bottom:2px solid #ddd;}td{padding:6px 8px;border-bottom:1px solid #eee;}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:16px;}.box{background:#f9f9f9;border:1px solid #ddd;border-radius:4px;padding:9px;}.lbl{font-size:10px;text-transform:uppercase;color:#888;margin-bottom:2px;}.val{font-size:16px;font-weight:700;}.red{color:#cc0000;}.green{color:#006600;}.footer{margin-top:26px;font-size:10px;color:#bbb;text-align:center;}.pb{page-break-before:always;margin-top:32px;}@media print{body{padding:12px;}}</style></head><body>'+body+'<div class="footer">OV App — '+fmtDate(new Date())+'</div></body></html>';
 }
 function buildWorkerSection(worker,records,pays,balance,type,addBreak){
-  
-    const rows = records.map(item=>{
-    const rec = item.rec;
-    const ws = item.ws;
-    const days = rec.daysWorked || rec.days.slice(0,6).filter(Boolean).length;
-    const hours = rec.hoursPerDay? rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(rec.days[i]?h:0),0): 0;
-    const qt = (rec.quemas||[]).reduce((s,q)=>s+q.amount,0);
-    return `
-    <tr>
-      <td>${fmtDate(ws)} – ${fmtDate(getWeekEnd(ws))}</td>
-      <td>${days}</td>
-      <td>${hours}h</td>
-      <td>${rec.sundayBonus ? '✅' : '—'}</td>
-      <td>${rec.extraH || 0}h</td>
-      <td>${rec.discH || 0}h</td>
-      <td>S/${rec.discS || 0}</td>
-      <td>S/${rec.adelanto || 0}</td>
-      <td>${qt ? 'S/'+qt : '—'}</td>
-      <td>S/${rec.rateUsedDay || '?'}/día</td>
-      <td style="text-align:right;font-weight:700;">S/${rec.totalPay}</td>
-    </tr>`;
- 
+  const rows=records.map(item=>{
+    const rec=item.rec;const ws=item.ws;
+    const days=rec.daysWorked||rec.days.slice(0,6).filter(Boolean).length;
+    const hours=rec.hoursPerDay?rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(rec.days[i]?h:0),0):0;
+    const qt=(rec.quemas||[]).reduce((s,q)=>s+q.amount,0);
+    return'<tr><td>'+fmtDate(ws)+' – '+fmtDate(getWeekEnd(ws))+'</td><td>'+days+'</td><td>'+hours+'h</td><td>'+(rec.sundayBonus?'✅':'—')+'</td><td>'+((rec.quemas||[]).length?'S/'+qt:'—')+'</td><td>S/'+(rec.rateUsedDay||'?')+'/día</td><td style="text-align:right;font-weight:700;">S/'+rec.totalPay+'</td></tr>';
   }).join('');
   const totalPay=records.reduce((s,i)=>s+i.rec.totalPay,0);
   const payRows=pays.sort((a,b)=>b.date.localeCompare(a.date)).map(p=>'<tr><td>'+isoToDisplay(p.date)+'</td><td>'+(p.note||'—')+'</td><td>'+(p.type==='accumulated'?'Acumulado':'Semanal')+'</td><td style="text-align:right;color:#006600;font-weight:700;">S/'+p.amount+'</td></tr>').join('');
@@ -1270,4 +1254,3 @@ if(document.getElementById('main-app').style.display!=='none'){ load(); renderAl
 </script>
 </body>
 </html>
-
