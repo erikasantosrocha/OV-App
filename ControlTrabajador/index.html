@@ -1214,19 +1214,43 @@ function pdfWrapper(body){
 }
 function buildWorkerSection(worker,records,pays,balance,type,addBreak){
   const rows=records.map(item=>{
-    const rec=item.rec;const ws=item.ws;
-    const days=rec.daysWorked||rec.days.slice(0,6).filter(Boolean).length;
-    const hours=rec.hoursPerDay?rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(rec.days[i]?h:0),0):0;
-    const qt=(rec.quemas||[]).reduce((s,q)=>s+q.amount,0);
-    return'<tr><td>'+fmtDate(ws)+' – '+fmtDate(getWeekEnd(ws))+'</td><td>'+days+'</td><td>'+hours+'h</td><td>'+(rec.sundayBonus?'✅':'—')+'</td><td>'+((rec.quemas||[]).length?'S/'+qt:'—')+'</td><td>S/'+(rec.rateUsedDay||'?')+'/día</td><td style="text-align:right;font-weight:700;">S/'+rec.totalPay+'</td></tr>';
+    const rec = item.rec;
+    const ws = item.ws;
+    const days = rec.daysWorked || rec.days.slice(0,6).filter(Boolean).length;
+    const hours = rec.hoursPerDay ? rec.hoursPerDay.slice(0,6).reduce((s,h,i)=>s+(rec.days[i]?h:0),0): 0;
+    const rateDay = rec.rateUsedDay || 0;
+    const rateHour = rateDay / 9;
+    const extraPay = Math.round((rec.extraH || 0) * rateHour);
+    const discHPay = Math.round((rec.discH || 0) * rateHour);
+    const discS = rec.discS || 0;
+    const adelanto = rec.adelanto || 0;
+    const quemaTotal = (rec.quemas || []).reduce((s,q)=>s+q.amount,0);
+    return `
+      <tr>
+        <td>${fmtDate(ws)} – ${fmtDate(getWeekEnd(ws))}</td>
+        <td>${days}</td>
+        <td>${hours}h</td>
+        <td>${rec.sundayBonus ? '✅' : '—'}</td>
+        <td>
+          +S/${extraPay}<br>
+          <span style="color:#cc0000;">-S/${discHPay}</span>
+        </td>
+        <td>
+          ${quemaTotal ? '🔥 S/' + quemaTotal : '—'}
+        </td>
+        <td>
+          <span style="color:#cc0000;">-S/${discS}</span><br>
+          <span style="color:#cc0000;">-S/${adelanto}</span>
+        </td>
+        <td>S/${rateDay}/día</td>
+        <td style="text-align:right;font-weight:700;">S/${rec.totalPay}</td></tr>`;
   }).join('');
-  const totalPay=records.reduce((s,i)=>s+i.rec.totalPay,0);
-  const payRows=pays.sort((a,b)=>b.date.localeCompare(a.date)).map(p=>'<tr><td>'+isoToDisplay(p.date)+'</td><td>'+(p.note||'—')+'</td><td>'+(p.type==='accumulated'?'Acumulado':'Semanal')+'</td><td style="text-align:right;color:#006600;font-weight:700;">S/'+p.amount+'</td></tr>').join('');
+    
   return(addBreak?'<div class="pb">':'')+
     '<h1>'+worker.name+'</h1>'+
     '<h2>'+(type==='week'?'Semanal':type==='month'?'Mensual':'Anual')+(worker.dni?' · DNI: '+worker.dni:'')+(worker.phone?' · Cel: '+worker.phone:'')+'</h2>'+
     '<div class="grid"><div class="box"><div class="lbl">Total Período</div><div class="val">S/'+totalPay+'</div></div><div class="box"><div class="lbl">Total Pagado</div><div class="val green">S/'+pays.reduce((s,p)=>s+p.amount,0)+'</div></div><div class="box"><div class="lbl">Saldo</div><div class="val red">S/'+balance+'</div></div></div>'+
-    '<h3>Semanas</h3><table><thead><tr><th>Semana</th><th>Días</th><th>Hrs</th><th>Dom</th><th>Quemas</th><th>Tarifa</th><th>Total</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr style="background:#f0f0f0;font-weight:700;"><td colspan="6">TOTAL</td><td style="text-align:right">S/'+totalPay+'</td></tr></tfoot></table>'+
+    '<h3>Semanas</h3><table><thead><tr><th>Semana</th><th>Días</th><th>Hrs</th><th>Dom</th><th>Extras / Desc H</th><th>Quemas</th><th>Desc / Adel</th><th>Tarifa</th><th>Total</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr style="background:#f0f0f0;font-weight:700;"><td colspan="6">TOTAL</td><td style="text-align:right">S/'+totalPay+'</td></tr></tfoot></table>'+
     (payRows?'<h3>Pagos</h3><table><thead><tr><th>Fecha</th><th>Nota</th><th>Tipo</th><th>Monto</th></tr></thead><tbody>'+payRows+'</tbody></table>':'')+(addBreak?'</div>':'');
 }
 
