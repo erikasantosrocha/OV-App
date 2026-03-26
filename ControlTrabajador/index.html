@@ -1170,10 +1170,19 @@ function renderPdfWorkerList(){
   const type=document.getElementById('pdf-type')?document.getElementById('pdf-type').value:'week';
   document.getElementById('pdf-month-row').style.display=type==='month'?'grid':'none';
   document.getElementById('pdf-year-row').style.display=type==='year'?'block':'none';
-  const div=document.getElementById('pdf-worker-list');if(!div)return;
+  const div=document.getElementById('pdf-worker-list');
+  if(!div) return;
   const sw=sortedWorkers();
-  if(!sw.length){div.innerHTML='<p style="color:var(--muted);font-size:13px;">Sin trabajadores.</p>';return;}
-  div.innerHTML=sw.map(w=>'<div class="pdf-chk-item" onclick="togglePdfChk(\''+w.id+'\')"><input type="checkbox" id="pdf-chk-'+w.id+'" value="'+w.id+'" checked onchange="updateChkMark(\''+w.id+'\')"><label for="pdf-chk-'+w.id+'" onclick="event.preventDefault();">'+w.name+'</label><span class="chk-mark" id="chkmark-'+w.id+'">✓</span></div>').join('');
+  if(!sw.length){
+    div.innerHTML='<p style="color:var(--muted);font-size:13px;">Sin trabajadores.</p>';
+    return;
+  }
+  div.innerHTML = sw.map(w => `
+    <label class="pdf-chk-item" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+      <input type="checkbox" value="${w.id}" checked style="transform:scale(1.2);">
+      <span>${w.name}</span>
+    </label>
+  `).join('');
 }
 function togglePdfChk(wid){
   const cb=document.getElementById('pdf-chk-'+wid);if(!cb)return;
@@ -1271,8 +1280,10 @@ function buildWorkerSection(worker,records,pays,balance,type,addBreak){
         <td>${hours}h</td>
         <td>${rec.sundayBonus ? '✅' : '—'}</td>
         <td>
-          +S/${extraPay}<br>
-          <span style="color:#cc0000;">-S/${discHPay}</span>
+          +S/${extraPay} (${(rec.extraH || 0)}h)<br>
+          <span style="color:#cc0000;">
+            -S/${discHPay} (${(rec.discH || 0)}h)
+          </span>
         </td>
         <td>
           ${quemaTotal ? '🔥 S/' + quemaTotal : '—'}
