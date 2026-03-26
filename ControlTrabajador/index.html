@@ -707,14 +707,33 @@ function monthKey(dateStr){ return dateStr.slice(0,7); }
 // ================================================================
 function dayRateToHourly(d,h){ return h>0?d/h:0; }
 function getRateForWeek(worker, weekStartDate){
-  if(!worker.salaryHistory||!worker.salaryHistory.length) return{daily:worker.rateDay||0,hourly:dayRateToHourly(worker.rateDay||0,worker.hoursPerDay||9)};
-  const wDate=weekStartDate instanceof Date?weekStartDate:new Date(weekStartDate+'T00:00:00');
-  const applicable=worker.salaryHistory.filter(s=>new Date(s.from+'T00:00:00')<=wDate).sort((a,b)=>new Date(b.from)-new Date(a.from));
-  if(!applicable.length) return{daily:worker.rateDay||0,hourly:dayRateToHourly(worker.rateDay||0,worker.hoursPerDay||9)};
-  const s=applicable[0];
-  return{daily:s.rateDay,hourly:dayRateToHourly(s.rateDay,worker.hoursPerDay||9)};
+  // protección contra undefined
+  if(!worker){console.warn('⚠️ Worker undefined en getRateForWeek');return { daily: 0, hourly: 0 };
+  }
+  if(!worker.salaryHistory || !worker.salaryHistory.length){
+    return {
+      daily: worker.rateDay || 0,
+      hourly: dayRateToHourly(worker.rateDay || 0, worker.hoursPerDay || 9)
+    };
+  }
+  const wDate = weekStartDate instanceof Date
+    ? weekStartDate
+    : new Date(weekStartDate + 'T00:00:00');
+  const applicable = worker.salaryHistory
+    .filter(s => new Date(s.from + 'T00:00:00') <= wDate)
+    .sort((a,b)=> new Date(b.from) - new Date(a.from));
+  if(!applicable.length){
+    return {
+      daily: worker.rateDay || 0,
+      hourly: dayRateToHourly(worker.rateDay || 0, worker.hoursPerDay || 9)
+    };
+  }
+  const s = applicable[0];
+  return {
+    daily: s.rateDay,
+    hourly: dayRateToHourly(s.rateDay, worker.hoursPerDay || 9)
+  };
 }
-
 // ================================================================
 // WORKER SORT
 // ================================================================
@@ -934,6 +953,10 @@ function loadWorkerWeek(){
   if(!wid){panel.style.display='none';return;}
   panel.style.display='block';
   const worker=state.workers.find(w=>w.id===wid);
+  if(!worker){
+    console.warn('⚠️ Worker no encontrado:', wid);
+    return;
+  }
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rateInfo=getRateForWeek(worker,ws);
   document.getElementById('active-rate-display').textContent='S/'+rateInfo.daily+'/día';
