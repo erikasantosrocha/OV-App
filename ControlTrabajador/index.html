@@ -1192,7 +1192,6 @@ function generatePDF(){
           records = [all[0]]; // última semana disponible
         }
       }
-    }
     } else if(type==='month'){
       Object.entries(state.weekRecords).filter(([k,v])=>v.workerId===wid).forEach(([k,v])=>{const ws=new Date(v.weekKey+'T00:00:00');if(ws.getMonth()===month&&ws.getFullYear()===year)records.push({ws,rec:v});});
       records.sort((a,b)=>a.ws-b.ws);
