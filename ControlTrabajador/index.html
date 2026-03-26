@@ -813,16 +813,16 @@ async function loadFromSheets(){
     const dP=await rP.json();
     if(dW.rows&&dW.rows.length>1){
       const h=dW.rows[0];
-      state.workers=dW.rows.slice(1).map(r=>({id:r[0],name:r[1],dni:r[2],phone:r[3],hoursPerDay:parseFloat(r[4])||9,rateDay:parseFloat(r[5])||0,salaryHistory:tryParse(r[6],[{rateDay:parseFloat(r[5])||0,from:'2024-01-01'}])}));
+      state.workers=dW.rows.slice(1).map(r=>({id:String(r[0]),name:r[1],dni:r[2],phone:r[3],hoursPerDay:parseFloat(r[4])||9,rateDay:parseFloat(r[5])||0,salaryHistory:tryParse(r[6],[{rateDay:parseFloat(r[5])||0,from:'2024-01-01'}])}));
     }
     if(dR.rows&&dR.rows.length>1){
       state.weekRecords={};
       dR.rows.slice(1).forEach(r=>{
-        state.weekRecords[r[0]]={workerId:r[1],weekKey:r[2],days:tryParse(r[3],[]),hoursPerDay:tryParse(r[4],[]),extraH:parseFloat(r[5])||0,discH:parseFloat(r[6])||0,discS:parseFloat(r[7])||0,adelanto:parseFloat(r[8])||0,quemas:tryParse(r[9],[]),note:r[10],totalPay:parseFloat(r[11])||0,sundayBonus:r[12]==='true'||r[12]===true,rateUsedDay:parseFloat(r[13])||0,daysWorked:parseFloat(r[14])||0};
+        state.weekRecords[r[0]]={workerId:String(r[1]),weekKey:r[2],days:tryParse(r[3],[]),hoursPerDay:tryParse(r[4],[]),extraH:parseFloat(r[5])||0,discH:parseFloat(r[6])||0,discS:parseFloat(r[7])||0,adelanto:parseFloat(r[8])||0,quemas:tryParse(r[9],[]),note:r[10],totalPay:parseFloat(r[11])||0,sundayBonus:r[12]==='true'||r[12]===true,rateUsedDay:parseFloat(r[13])||0,daysWorked:parseFloat(r[14])||0};
       });
     }
     if(dP.rows&&dP.rows.length>1){
-      state.payments=dP.rows.slice(1).map(r=>({id:r[0],workerId:r[1],amount:parseFloat(r[2])||0,date:r[3],note:r[4],type:r[5]||'weekly'}));
+      state.payments=dP.rows.slice(1).map(r=>({id:String(r[0]),workerId:String(r[1]),amount:parseFloat(r[2])||0,date:r[3],note:r[4],type:r[5]||'weekly'}));
     }
     save();
   }catch(e){ load(); }
@@ -952,7 +952,7 @@ function loadWorkerWeek(){
   const panel=document.getElementById('reg-panel');
   if(!wid){panel.style.display='none';return;}
   panel.style.display='block';
-  const worker=state.workers.find(w=>w.id===wid);
+  const worker=state.workers.find(w=>String(w.id) === String(wid));
   if(!worker){
     console.warn('⚠️ Worker no encontrado:', wid);
     return;
@@ -993,7 +993,7 @@ function checkSunday(){
   const wid=document.getElementById('reg-worker-select').value;if(!wid)return;
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rec=state.weekRecords[key];if(!rec)return;
-  const worker=state.workers.find(w=>w.id===wid);
+  const worker=state.workers.find(w=>String(w.id) === String(wid));
   const allDays=rec.days.slice(0,6).every(Boolean);const failedDays=[];
   for(let i=0;i<6;i++){const h=parseFloat(document.getElementById('h-'+i)?document.getElementById('h-'+i).value:0)||0;if(rec.days[i]&&h<worker.hoursPerDay)failedDays.push(DAYS_ES[i]+'('+h+'h<'+worker.hoursPerDay+'h)');}
   const hasSunday=allDays&&failedDays.length===0;rec.days[6]=hasSunday;
@@ -1013,7 +1013,7 @@ function removeQuema(i){quemasData.splice(i,1);renderQuemasUI();}
 function updateQuema(i,v){quemasData[i].amount=Math.round(parseFloat(v)||0);recalcPreview();}
 function recalcPreview(){
   const wid=document.getElementById('reg-worker-select').value;if(!wid)return;
-  const worker=state.workers.find(w=>w.id===wid);if(!worker)return;
+  const worker=state.workers.find(w=>String(w.id) === String(wid));if(!worker)return;
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rec=state.weekRecords[key];if(!rec)return;
   const ri=getRateForWeek(worker,ws);
@@ -1043,7 +1043,7 @@ function recalcPreview(){
 function row(l,v){return'<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;"><span>'+l+'</span><span class="mono">'+v+'</span></div>';}
 function saveWeekRecord(){
   const wid=document.getElementById('reg-worker-select').value;if(!wid){toast('Selecciona empleado');return;}
-  const worker=state.workers.find(w=>w.id===wid);
+  const worker=state.workers.find(w=>String(w.id) === String(wid));
   const ws=getWeekStart(currentWeekOffset);const key=wid+'_'+weekKey(ws);
   const rec=state.weekRecords[key];if(!rec){toast('Marca días primero');return;}
   const ri=getRateForWeek(worker,ws);
@@ -1196,7 +1196,7 @@ function generatePDF(){
   if(type==='year'){yearOnly=parseInt(document.getElementById('pdf-year-only').value);}
   let allHTML='';
   selected.forEach((wid,idx)=>{
-    const worker=state.workers.find(w=>w.id===wid);if(!worker)return;
+    const worker=state.workers.find(w=>String(w.id) === String(wid));if(!worker)return;
     let records=[];
     if(type==='week'){
       const ws=getWeekStart(currentWeekOffset);
