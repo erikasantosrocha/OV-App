@@ -1170,13 +1170,16 @@ function renderPdfWorkerList(){
   const type=document.getElementById('pdf-type')?document.getElementById('pdf-type').value:'week';
   document.getElementById('pdf-month-row').style.display=type==='month'?'grid':'none';
   document.getElementById('pdf-year-row').style.display=type==='year'?'block':'none';
+
   const div=document.getElementById('pdf-worker-list');
   if(!div) return;
+
   const sw=sortedWorkers();
   if(!sw.length){
     div.innerHTML='<p style="color:var(--muted);font-size:13px;">Sin trabajadores.</p>';
     return;
   }
+
   div.innerHTML = sw.map(w => `
     <label class="pdf-chk-item" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
       <input type="checkbox" value="${w.id}" checked style="transform:scale(1.2);">
