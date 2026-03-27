@@ -1264,7 +1264,6 @@ function generatePDF(){
           const ws = new Date(v.weekKey + 'T00:00:00');
           if((ws.getMonth()+1)===month && ws.getFullYear()===year)
             records.push({ ws: ws, rec: v });
-          }
         });
       records.sort((a, b) => a.ws - b.ws);
     } else if(type==='year'){
