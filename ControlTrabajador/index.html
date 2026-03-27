@@ -1175,14 +1175,21 @@ function renderPdfWorkerList(){
   if(!div) return;
 
   const sw=sortedWorkers();
+
   if(!sw.length){
     div.innerHTML='<p style="color:var(--muted);font-size:13px;">Sin trabajadores.</p>';
     return;
   }
 
   div.innerHTML = sw.map(w => `
-    <label class="pdf-chk-item" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-      <input type="checkbox" value="${w.id}" checked style="transform:scale(1.2);">
+    <label class="pdf-chk-item" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:6px 0;">
+      <input 
+        type="checkbox" 
+        id="pdf-chk-${w.id}" 
+        value="${w.id}" 
+        checked
+        style="width:16px;height:16px;cursor:pointer;"
+      >
       <span>${w.name}</span>
     </label>
   `).join('');
@@ -1197,7 +1204,9 @@ function updateChkMark(wid){
   if(mark)mark.textContent=cb&&cb.checked?'✓':'';
 }
 function selectAllPdf(val){
-  document.querySelectorAll('[id^="pdf-chk-"]').forEach(cb=>{cb.checked=val;updateChkMark(cb.value);});
+  document.querySelectorAll('[id^="pdf-chk-"]').forEach(cb=>{
+    cb.checked = val;
+  });
 }
 function generatePDF(){
   const type=document.getElementById('pdf-type').value;
