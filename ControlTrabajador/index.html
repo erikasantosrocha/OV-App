@@ -1198,23 +1198,21 @@ function renderPdfWorkerList(){
     return;
   }
 
-  div.innerHTML = sw.map(w => `
-    <div class="pdf-chk-item" style="display:flex;align-items:center;gap:10px;padding:6px 0;">
-      
-      <input 
-        type="checkbox"
-        class="pdf-worker"   <!-- 🔥 ESTA ES LA CLAVE -->
-        id="pdf-chk-${w.id}"
-        value="${w.id}"
-        checked
-      >
-
-      <label for="pdf-chk-${w.id}" style="cursor:pointer;">
-        ${w.name}
-      </label>
-
-    </div>
-  `).join('');
+  div.innerHTML = sw.map(w => {
+    return `
+      <div class="pdf-chk-item">
+        <input 
+          type="checkbox"
+          id="pdf-chk-${w.id}"
+          value="${w.id}"
+          checked
+        >
+        <label for="pdf-chk-${w.id}">
+          ${w.name || 'Sin nombre'}
+        </label>
+      </div>
+    `;
+  }).join('');
 }
 function togglePdfChk(wid){
   const cb=document.getElementById('pdf-chk-'+wid);if(!cb)return;
