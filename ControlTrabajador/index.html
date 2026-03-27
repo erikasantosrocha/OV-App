@@ -147,12 +147,28 @@ select option{background:#222;}
 .rate-hint span{color:var(--accent);font-family:'DM Mono',monospace;}
 
 /* PDF WORKER LIST */
-.pdf-chk-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:background .12s;border-bottom:1px solid var(--border);}
+/* PDF WORKER LIST */
+.pdf-chk-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  border-bottom:1px solid var(--border);
+}
 .pdf-chk-item:last-child{border-bottom:none;}
 .pdf-chk-item:hover{background:var(--surface2);}
-.pdf-chk-item input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;}
-.pdf-chk-item label{cursor:pointer;font-size:14px;font-weight:500;flex:1;}
-.pdf-chk-item .chk-mark{font-size:14px;color:var(--accent);width:18px;text-align:center;}
+.pdf-chk-item input[type=checkbox]{
+  width:17px;
+  height:17px;
+  accent-color:var(--accent);
+  cursor:pointer;
+}
+.pdf-chk-item span{
+  font-size:14px;
+  font-weight:500;
+}
 
 /* SORT ROW */
 .sort-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
@@ -1168,6 +1184,7 @@ function renderPaymentHistory(){
 // ================================================================
 function renderPdfWorkerList(){
   const type = document.getElementById('pdf-type') ? document.getElementById('pdf-type').value : 'week';
+
   document.getElementById('pdf-month-row').style.display = type==='month' ? 'grid' : 'none';
   document.getElementById('pdf-year-row').style.display = type==='year' ? 'block' : 'none';
 
@@ -1186,6 +1203,7 @@ function renderPdfWorkerList(){
       
       <input 
         type="checkbox"
+        class="pdf-worker"   <!-- 🔥 ESTA ES LA CLAVE -->
         id="pdf-chk-${w.id}"
         value="${w.id}"
         checked
@@ -1244,7 +1262,7 @@ function generatePDF(){
         .filter(([k, v]) => v.workerId === wid)
         .forEach(([k, v]) => {
           const ws = new Date(v.weekKey + 'T00:00:00');
-          if (ws.getMonth() === month && ws.getFullYear() === year) {
+          if((ws.getMonth()+1)===month && ws.getFullYear()===year)
             records.push({ ws: ws, rec: v });
           }
         });
