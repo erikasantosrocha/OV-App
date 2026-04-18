@@ -1024,7 +1024,7 @@ function renderQuemasUI(){
   div.innerHTML=quemasData.map((q,i)=>'<div class="quema-row"><span style="font-size:13px;flex:1;">🔥 Quema #'+(i+1)+'</span><label style="font-size:12px;color:var(--muted);margin-bottom:0;text-transform:none;letter-spacing:0;">S/</label><input type="number" value="'+q.amount+'" min="0" step="1" style="width:78px;" oninput="updateQuema('+i+',this.value)"><button class="quema-del" onclick="removeQuema('+i+')">✕</button></div>').join('');
   recalcPreview();
 }
-function addQuema(){quemasData.push({amount:70});renderQuemasUI();}
+function addQuema(){quemasData.push({amount:50});renderQuemasUI();}
 function removeQuema(i){quemasData.splice(i,1);renderQuemasUI();}
 function updateQuema(i,v){quemasData[i].amount=Math.round(parseFloat(v)||0);recalcPreview();}
 function recalcPreview(){
